@@ -433,6 +433,35 @@ em.kn{font-style:normal;font-weight:700;color:var(--primary)}
 .rvcard{padding:16px}
 .rvhead{display:flex;align-items:center;gap:8px}
 
+/* acronym coach */
+.coachcard{padding:18px}
+.coachcard .aabbr{font-size:2.3rem;letter-spacing:.06em}
+.coachcard .afull{font-size:1.15rem}
+.coachnext{margin-top:14px;padding:12px 14px;border-radius:12px;background:var(--blue-soft);border:1px solid var(--line);border-color:color-mix(in srgb,var(--blue) 35%,transparent);display:flex;flex-direction:column;gap:2px}
+.coachnext .eyebrow{color:var(--blue)}
+.coachnext b{font-size:.98rem}
+.coachnext span:last-child{color:var(--muted);font-size:.88rem}
+.crlist{display:flex;flex-direction:column;gap:10px}
+.crtile{display:block;width:100%;text-align:left;padding:14px;border-radius:12px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);color:var(--ink);font:inherit;cursor:pointer}
+.crtop{display:flex;align-items:center;gap:10px}
+.crab{font-family:var(--f-mono);font-weight:700;font-size:1.3rem;letter-spacing:.04em}
+.crtag{font-style:normal;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:2px 7px;border-radius:99px;background:var(--surface2);color:var(--muted)}
+.crtag.new{background:var(--blue-soft);color:var(--blue)}
+.crtap{margin-left:auto;font-size:.8rem;color:var(--primary);font-weight:600}
+.crfull{display:none;margin-top:8px;font-weight:600;line-height:1.4}
+.crfull b{color:var(--red);font-weight:800}
+.crtile.open{border-color:var(--good)}
+.crtile.open .crfull{display:block}
+.crtile.open .crtap{display:none}
+.againnote{margin:0 0 12px;padding:10px 12px;border-radius:10px;background:var(--blue-soft);font-size:.88rem;line-height:1.4}
+mark.acrhl{background:var(--yellow-soft);color:inherit;padding:0 3px;border-radius:4px;box-shadow:inset 0 -2px 0 var(--yellow)}
+.coachrow{margin-top:12px;padding:14px 16px}
+.coachsw{display:flex;align-items:flex-start;gap:12px;width:100%}
+.coachsw i{margin-top:2px}
+.coachsw .ct{display:flex;flex-direction:column;gap:2px;font-weight:500}
+.coachsw .ct b{font-weight:700}
+.coachsw .ct span{color:var(--muted);font-size:.86rem;line-height:1.4}
+
 </style>
 <header class="top"><div class="wrap"><div class="brand"><div class="flagmark" aria-hidden="true"><i></i><i></i><i></i></div><div><b>Aegis Academy</b><small>PC 4022 · Exam III</small></div></div><div class="stats" id="stats"></div></div></header>
 <main class="view wrap" id="main"></main>
@@ -641,19 +670,21 @@ function svgChart(o={}){
     s+=`<text x="46" y="44" class="ct" style="font-size:15px;fill:var(--chart-red);font-weight:400">BL 7.2B</text><text x="490" y="46" text-anchor="middle" class="ct" style="font-size:24px">(U) Aegis Destroyer Combat System</text><text x="936" y="44" text-anchor="end" class="ct" style="font-size:16px">UNCLASSIFIED</text>`;
     s+=`<rect x="20" y="62" width="928" height="592" fill="none" stroke="var(--chart-line)" stroke-width="3" stroke-dasharray="16 7 3 7 3 7"/>`;
     s+=`<text x="208" y="88" text-anchor="middle" class="ct" style="font-size:19px">DETECT</text><text x="512" y="88" text-anchor="middle" class="ct" style="font-size:19px">CONTROL</text><text x="770" y="90" text-anchor="middle" class="ct" style="font-size:19px">ENGAGE</text>`;
-    s+=`<rect x="66" y="680" width="52" height="22" fill="${FILL.red}" stroke="var(--chart-line)"/><text x="126" y="697" class="ct" style="font-size:15px">Aegis Weapon System Element</text><rect x="383" y="680" width="36" height="22" fill="${FILL.yellow}" stroke="var(--chart-line)"/><text x="426" y="697" class="ct" style="font-size:15px">Aegis Combat System Element</text><rect x="690" y="680" width="36" height="22" fill="${FILL.blue}" stroke="var(--chart-line)"/><text x="733" y="697" class="ct" style="font-size:15px">Outside ACS "Lifeline"</text>`;
+    if(o.legend!==false)s+=`<rect x="66" y="680" width="52" height="22" fill="${FILL.red}" stroke="var(--chart-line)"/><text x="126" y="697" class="ct" style="font-size:15px">Aegis Weapon System Element</text><rect x="383" y="680" width="36" height="22" fill="${FILL.yellow}" stroke="var(--chart-line)"/><text x="426" y="697" class="ct" style="font-size:15px">Aegis Combat System Element</text><rect x="690" y="680" width="36" height="22" fill="${FILL.blue}" stroke="var(--chart-line)"/><text x="733" y="697" class="ct" style="font-size:15px">Outside ACS "Lifeline"</text>`;
     s+=`<text x="484" y="732" text-anchor="middle" class="ct" style="font-size:18px">UNCLASSIFIED</text>`;
   }
   const vis=id=>show.has(id)||blank.has(id);
   if(o.lines){LN.forEach(([d,dash,[a,b]])=>{if(vis(a)&&vis(b))s+=`<path d="${d}" class="cl${+dash?' cd':''}"/>`});
     if(vis('C2'))s+=`<g fill="none" stroke="var(--chart-line)" stroke-width="1.2"><rect x="470" y="108" width="34" height="38" rx="3" fill="var(--chart-paper)"/><rect x="474" y="113" width="26" height="12"/><rect x="520" y="104" width="44" height="30" rx="3" fill="var(--chart-paper)" transform="rotate(14 542 119)"/><rect x="526" y="110" width="32" height="10" transform="rotate(14 542 119)"/></g>`}
   if(o.detail){DETAIL.forEach(d=>{if(d[0]==='line')s+=`<path d="${d[1]}" class="cl${d[2]?' cd':''}" style="stroke-width:1.2"/>`;else if(d[0]==='text')s+=`<text x="${d[1]}" y="${d[2]}" text-anchor="${d[5]||'middle'}" class="ct" style="font-size:${d[4]*1.25}px">${esc(d[3])}</text>`;else if(d[0]==='cap')s+=`<rect x="${d[1]-9}" y="${d[2]-4}" width="18" height="8" rx="4" fill="var(--chart-paper)" stroke="var(--chart-line)" stroke-width="1.2"/>`})}
-  EL.forEach(e=>{if(!vis(e.id))return;const isBlank=blank.has(e.id);const hl=o.hl===e.id;
-    const fill=isBlank?'var(--surface)':(colors?FILL[e.color]:'var(--surface)');const stroke=hl?'var(--primary)':(o.tint&&o.tint[e.id])||'var(--chart-line)';const sw=hl?5:(o.tint&&o.tint[e.id]?3.5:1.4);
+  const mark=new Set(o.mark||[]);
+  EL.forEach(e=>{if(!vis(e.id))return;const isBlank=blank.has(e.id);const hl=o.hl===e.id;const mk=mark.has(e.id);
+    const fill=mk?'var(--primary-soft)':isBlank?'var(--surface)':(colors?FILL[e.color]:'var(--surface)');const stroke=hl||mk?'var(--primary)':(o.tint&&o.tint[e.id])||'var(--chart-line)';const sw=hl?5:mk?3.2:(o.tint&&o.tint[e.id]?3.5:1.4);
     const attrs=`fill="${fill}" stroke="${stroke}" stroke-width="${sw}" ${isBlank?'stroke-dasharray="5 4"':''}`;
     let shp=e.shape==='oval'?`<ellipse cx="${e.cx}" cy="${e.cy}" rx="${e.rx}" ry="${e.ry}" ${attrs}/>`:`<rect x="${e.x}" y="${e.y}" width="${e.w}" height="${e.h}" rx="${e.shape==='rbox'?12:0}" ${attrs}/>`;
     const [cx,cy]=center(e);let txt='';
-    if(isBlank){txt=o.q&&o.q[e.id]!=null?`<text x="${cx}" y="${cy+7}" text-anchor="middle" class="ct" style="font-size:20px;fill:var(--primary)">${esc(o.q[e.id])}</text>`:''}
+    if(o.num&&o.num[e.id]!=null){const hh=e.shape==='oval'?2*e.ry:e.h;const fs=Math.min(30,Math.round(hh*0.8));txt=`<text x="${cx}" y="${cy+fs*0.36}" text-anchor="middle" class="ct" style="font-size:${fs}px;fill:var(--primary)">${esc(o.num[e.id])}</text>`}
+    else if(isBlank){txt=o.q&&o.q[e.id]!=null?`<text x="${cx}" y="${cy+7}" text-anchor="middle" class="ct" style="font-size:20px;fill:var(--primary)">${esc(o.q[e.id])}</text>`:''}
     else if(names){const small=e.shape==='oval'&&e.ry<20||e.h<24;const fs=small?10.5:(e.lines.length>3?11:12.5);const lh=fs+1.5;const n=e.lines.length;const y0=cy-(n-1)*lh/2+fs*0.36;
       const tf=colors?TEXTFILL[e.color]:'var(--ink)';txt=`<text text-anchor="middle" class="ct" style="font-size:${fs}px;fill:${tf}">${e.lines.map((l,i)=>`<tspan x="${cx}" y="${y0+i*lh}">${esc(l)}</tspan>`).join('')}</text>`}
     s+=`<g class="${o.click?'cx-slot':''} ${hl?'cx-hl':''}" data-el="${e.id}">${shp}${txt}</g>`});
@@ -663,7 +694,7 @@ function scrollToEl(wrap,id){const e=BY[id];if(!e||!wrap)return;const svg=wrap.q
 
 /* ---- lesson step types ---- */
 const chartBox=(o,cls='')=>`<div class="chartwrap ${cls}" id="cw">${svgChart(o)}</div><p class="hint scrollhint">Swipe the chart sideways to see all of it.</p>`;
-const KH=s=>`<div class="stepkind"><i class="sq ${s.t==='chartshow'?'navy':'yellow'}"></i><span>${s.kind||({chartshow:'7.2B chart',chartpick:'Place it',charttype:'Name it from memory',chartrecall:'Recall it'})[s.t]||'7.2B chart'}</span></div>`;
+const KH=s=>`<div class="stepkind"><i class="sq ${s.t==='chartshow'?'navy':'yellow'}"></i><span>${s.kind||({chartshow:'7.2B chart',chartpick:'Place it',charttype:'Name it from memory',chartrecall:'Recall it',chartbuild:'Build the shape'})[s.t]||'7.2B chart'}</span></div>`;
 const STEPS={};
 STEPS.chartshow={render:s=>`${KH(s)}${s.h?`<h2 class="sh">${s.h}</h2>`:''}${s.b?`<div class="sb" style="margin-bottom:12px">${s.b}</div>`:''}${chartBox(Object.assign({lines:false,detail:false},s.o))}${s.after?`<div class="sb" style="margin-top:12px">${s.after}</div>`:''}`,
   mount(s,ctx,el){const f=s.o&&(s.o.hl||s.o.focus);if(f)setTimeout(()=>scrollToEl($('#cw',el),f),30)}};
@@ -693,15 +724,55 @@ STEPS.chartpick=seqStep(false);STEPS.charttype=seqStep(true);
 STEPS.chartrecall={auto:true,
   render(s,ctx){const r=window.APP&&window.APP.S.srs[s._id];ctx.tm=!!(r&&r.lv>=2);return (ctx.tm?STEPS.charttype:STEPS.chartpick).render(Object.assign({},s,{q:ctx.tm?'Name the flashing element from memory.':'Which element goes in the flashing slot?'}),ctx)},
   mount(s,ctx,el){return (ctx.tm?STEPS.charttype:STEPS.chartpick).mount(s,ctx,el)},check(s,ctx){return ctx.result}};
+/* ---- Build the shape: the whole frame as counts and shapes, no names ----
+   Left 10 boxes · right 8 boxes · middle: 1 hub, the Big Three, bottom three, upper six (3 ovals + 3 boxes), 2 loners = 33 */
+const SHAPE=[
+ {k:'left',ids:ZONES.DETECT,label:'Left column',q:'Start on the left, under DETECT. What goes there?',ans:'A column of 10 boxes',wrong:['A column of 8 boxes','A column of 12 boxes','A column of 10 ovals'],tip:'10 boxes. A ship has more ways to see than to shoot.'},
+ {k:'right',ids:ZONES.ENGAGE,label:'Right column',q:'Now the right side, under ENGAGE.',ans:'A column of 8 boxes',wrong:['A column of 10 boxes','A column of 6 boxes','A column of 8 ovals'],tip:'8 boxes, a little wider than the left ones. 10 in, 8 out.'},
+ {k:'hub',ids:['C3'],label:'The hub',q:'Into the middle. What sits dead center?',ans:'One hub: a rounded box',wrong:['Three tall ovals in a row','One tall oval','Two small boxes side by side'],tip:'One hub. Everything in the middle connects through it.'},
+ {k:'big3',ids:['C1','C2','C4'],label:'The Big Three',q:'What surrounds the hub?',ans:'Three tall ovals: left, top and lower right',wrong:['Three flat ovals in a row under it','Three small boxes above it','Four tall ovals, one on each side'],tip:'A triangle of tall ovals. The left one leans toward DETECT, the lower-right one toward ENGAGE.'},
+ {k:'low3',ids:['C6','C5','C7'],label:'Bottom three',q:'Drop to the bottom of the middle. What runs along there?',ans:'Three flat ovals',wrong:['Three tall ovals','Three small boxes','One long box'],tip:'Three flat ovals in a shallow smile: the left one highest, the middle one lowest.'},
+ {k:'up6',ids:['A1','A2','A3','C9','A4','C10'],label:'Upper six',q:'Up to the top-left corner of the middle. What fills it?',ans:'Six: 3 flat ovals and 3 small boxes',wrong:['Six flat ovals','Six small boxes','4 flat ovals and 2 small boxes'],tip:'A zigzag stack of 3 flat ovals, with 1 small box at its top left and 2 small boxes side by side underneath.'},
+ {k:'loners',ids:['C8','A8'],label:'Two loners',q:'Two loners finish the frame. Where are they?',ans:'A flat oval top right, and a small box under the left tall oval',wrong:['Two tall ovals under the hub','Two small boxes beside the right column','A flat oval under the hub and a box above it'],tip:'That’s all 33: 10 + 8 + 1 + 3 + 3 + 6 + 2.'}
+];
+const SHAPE_BY={};SHAPE.forEach(x=>SHAPE_BY[x.k]=x);
+const SHAPE_KEYS=SHAPE.map(x=>x.k);
+/* done = groups drawn plainly; cur = groups highlighted and numbered */
+function shapeSvg(done=[],cur=[],num=true){
+  const d=done.flatMap(k=>SHAPE_BY[k].ids),c=cur.flatMap(k=>SHAPE_BY[k].ids);const n={};
+  if(num)cur.forEach(k=>SHAPE_BY[k].ids.forEach((id,i)=>n[id]=i+1));
+  return svgChart({show:d.concat(c),names:false,colors:false,lines:false,legend:false,mark:c,num:n});
+}
+const shapeBox=(done,cur,num)=>`<div class="chartwrap fit shapewrap">${shapeSvg(done,cur,num)}</div>`;
+STEPS.chartbuild={auto:true,
+  render(s,ctx){ctx.k=ctx.k||0;ctx.miss=ctx.miss||0;ctx.done=ctx.done||[];
+    return `${KH(s)}<h2 class="sh">${esc(s.h||'Build the frame from nothing')}</h2><div id="cbchart"></div><div id="cbctl" style="margin-top:12px"></div>`},
+  mount(s,ctx,el){const A=window.APP;
+    const paint=(cur)=>{$('#cbchart',el).innerHTML=shapeBox(ctx.done,cur||[],true);
+      if(ctx.k>=SHAPE.length){$('#cbctl',el).innerHTML='';return}
+      const st=SHAPE[ctx.k];ctx.cur=st;ctx.opts=A.shuffle([st.ans].concat(st.wrong));
+      $('#cbctl',el).innerHTML=`<div class="small muted" style="margin-bottom:6px">Piece ${ctx.k+1} of ${SHAPE.length} · ${esc(st.label)}${ctx.miss?` · ${ctx.miss} missed`:''}</div><p class="q" style="margin-bottom:10px">${esc(st.q)}</p><div class="opts" id="cbopts">${ctx.opts.map((t,i)=>`<button class="opt" data-i="${i}"><span>${esc(t)}</span></button>`).join('')}</div><div id="cbfb"></div>`;
+      $$('#cbopts .opt',el).forEach(b=>b.onclick=()=>{if(ctx.busy)return;const ok=ctx.opts[+b.dataset.i]===st.ans;ctx.busy=true;b.classList.add(ok?'right':'wrong');
+        if(!ok){ctx.miss++;$$('#cbopts .opt',el).forEach(x=>{if(ctx.opts[+x.dataset.i]===st.ans)x.classList.add('right')})}
+        ctx.done=ctx.done.concat([st.k]);$('#cbchart',el).innerHTML=shapeBox(ctx.done.slice(0,-1),[st.k],true);
+        $('#cbfb',el).innerHTML=`<p class="small" style="margin-top:8px;color:${ok?'var(--good)':'var(--bad)'}"><b>${ok?'✓':'✗ Answer:'} ${esc(st.ans)}.</b> <span style="color:var(--ink)">${esc(st.tip)}</span></p>${ok?'':'<button class="btn sm" id="cbnext" style="margin-top:8px">Next piece →</button>'}`;
+        const go=()=>{ctx.busy=false;ctx.k++;if(ctx.k>=SHAPE.length){paint();ctx.result={ok:ctx.miss===0,q:ctx.miss===0?2:ctx.miss<=1?1:0,msg:(ctx.miss?`${ctx.miss} of ${SHAPE.length} pieces missed. `:'Every piece in the right place. ')+'10 in, 8 out · 1 hub · Big Three · bottom three · upper six (3 ovals + 3 boxes) · two loners = 33.'};ctx.autoCheck()}else paint()};
+        if(ok)setTimeout(go,1300);else $('#cbnext',el).onclick=go});
+    };
+    paint();ctx.ready(false)},
+  check(s,ctx){return ctx.result}
+};
+
 function elItem(id){const I=window.APP&&window.APP.ITEMS;if(!I)return null;for(const k in I){const it=I[k];if(it.el===id)return k}return null}
 
 /* ---- review item factories used by content.js ---- */
-const CH={EL,BY,ZONES,ALL,svgChart,
+const CH={EL,BY,ZONES,ALL,svgChart,SHAPE,SHAPE_KEYS,shapeSvg,
+  shapeFig:(done,cur,num)=>()=>shapeSvg(done,cur,num),
   itemsFor(ids){return ids.map(id=>({t:'chartrecall',ids:[id],el:id,o:{show:ALL,lines:true},q:'Recall the flashing element.'}))},
   names:ids=>ids.map(id=>BY[id].name)
 };
 window.CHART=CH;
-window.CHART_STEPS={chartshow:STEPS.chartshow,chartpick:STEPS.chartpick,charttype:STEPS.charttype,chartrecall:STEPS.chartrecall};
+window.CHART_STEPS={chartshow:STEPS.chartshow,chartpick:STEPS.chartpick,charttype:STEPS.charttype,chartrecall:STEPS.chartrecall,chartbuild:STEPS.chartbuild};
 
 /* ===================== LAB VIEW ===================== */
 let LAB={tab:'learn',explore:null,original:false,detail:true,sketch:null,check:null};
@@ -712,13 +783,13 @@ function view(){
   let body='';
   if(LAB.tab==='learn'){
     const seen=ALL.filter(id=>{const k=elItem(id);return k&&S.srs[k]}).length;const m=Math.round(100*A.mastery(ALL.map(elItem).filter(Boolean)));
-    body=`<p class="muted">You have to draw this chart from memory. Build it the way you'd draw it: frame first, then the two columns, then the red core, the LANs, and finally the wires. Each layer has a story so the positions make sense.</p>
+    body=`<p class="muted">You have to draw this chart from memory. Build it the way you'd draw it: the frame, then the bare shape (10 and 8, the hub, the Big Three and the rest), then the names column by column, the red core, the LANs, and finally the wires. Each layer has a story so the positions make sense.</p>
     <div class="card duebox" style="margin-top:14px"><span class="n">${m}%</span><span class="t"><b>Chart mastery</b><span>${seen}/33 elements in your review deck</span></span></div>
     <div class="lessons" style="margin-top:14px">${unit.lessons.map((l,i)=>window.APP_lessonRow(l,'8.'+(i+1),null)).join('')}</div>
     <div class="divider"></div><h2 class="h2">Your heat map</h2><p class="muted small" style="margin:4px 0 10px">Outline color shows how well you know each element: green solid, yellow shaky, red weak. No outline yet means not studied.</p><div class="chartwrap">${svgChart({show:'all',lines:true,detail:false,tint:masteryTint()})}</div>`;
   }else if(LAB.tab==='drill'){
-    const D=[['pick:DETECT','Fill the DETECT column','Pick each name for a flashing slot'],['pick:ENGAGE','Fill the ENGAGE column','Pick each name for a flashing slot'],['pick:CONTROL','Fill the CONTROL zone','Core networks, LANs and lifelines'],['type:ALL','Name all 33 from memory','Type each name. This is closest to the exam.'],['order:DETECT','DETECT column order','Top to bottom, 10 boxes'],['order:ENGAGE','ENGAGE column order','Top to bottom, 8 boxes'],['color:ALL','Color check','Red, yellow or blue for every element'],['wire:ALL','Wiring check','Which network does each box plug into?']];
-    body=`<p class="muted">Every drill result updates the element's review schedule, so weak spots come back sooner.</p><div class="lessons" style="margin-top:14px">${D.map(d=>`<button class="lrow" data-drill="${d[0]}"><span class="dot">${d[0].startsWith('type')?'Aa':d[0].startsWith('order')?'1-2':d[0].startsWith('color')?'RYB':d[0].startsWith('wire')?'—':'?'}</span><span class="lt"><b>${d[1]}</b><span>${d[2]}</span></span><span class="go">Go</span></button>`).join('')}</div>`;
+    const D=[['build:ALL','Build the shape','The bare frame from nothing: counts and shapes, no names'],['pick:DETECT','Fill the DETECT column','Pick each name for a flashing slot'],['pick:ENGAGE','Fill the ENGAGE column','Pick each name for a flashing slot'],['pick:CONTROL','Fill the CONTROL zone','Core networks, LANs and lifelines'],['type:ALL','Name all 33 from memory','Type each name. This is closest to the exam.'],['order:DETECT','DETECT column order','Top to bottom, 10 boxes'],['order:ENGAGE','ENGAGE column order','Top to bottom, 8 boxes'],['color:ALL','Color check','Red, yellow or blue for every element'],['wire:ALL','Wiring check','Which network does each box plug into?']];
+    body=`<p class="muted">Every drill result updates the element's review schedule, so weak spots come back sooner.</p><div class="lessons" style="margin-top:14px">${D.map(d=>`<button class="lrow" data-drill="${d[0]}"><span class="dot">${d[0].startsWith('build')?'◻':d[0].startsWith('type')?'Aa':d[0].startsWith('order')?'1-2':d[0].startsWith('color')?'RYB':d[0].startsWith('wire')?'—':'?'}</span><span class="lt"><b>${d[1]}</b><span>${d[2]}</span></span><span class="go">Go</span></button>`).join('')}</div>`;
   }else if(LAB.tab==='explore'){
     const e=LAB.explore&&BY[LAB.explore];
     body=`<div class="row" style="justify-content:space-between;margin-bottom:10px"><div class="seg"><button class="${LAB.original?'':'on'}" data-lab="orig:0">Rebuilt chart</button><button class="${LAB.original?'on':''}" data-lab="orig:1">Original handout</button></div>${LAB.original?'':`<button class="btn sm" data-lab="detail">${LAB.detail?'Hide':'Show'} small labels</button>`}</div>
@@ -760,6 +831,7 @@ function labClick(e){const b=e.target.closest('button');if(!b)return false;const
   if(b.dataset.sk)return true;return false}
 function runDrill(code){const A=window.APP;const [mode,zone]=code.split(':');let steps=[];
   const ids=zone==='ALL'?ALL:zone==='CONTROL'?ZONES.CORE.concat(ZONES.LANS):ZONES[zone];
+  if(mode==='build')steps=[{t:'chartbuild',h:'Build the frame from nothing'}];
   if(mode==='pick')steps=[{t:'chartpick',ids,perEl:true,o:{show:ALL,lines:true},q:'Which element goes in the flashing slot?'}];
   if(mode==='type')steps=[{t:'charttype',ids:ALL,perEl:true,o:{show:ALL,lines:true},q:'Name the flashing element. Short forms are fine.'}];
   if(mode==='order')steps=[{t:'order',q:`Put the ${zone} column in order, top to bottom.`,items:ids.map(id=>BY[id].name),fig:()=>svgChart({show:ALL.filter(x=>!ids.includes(x)),blank:ids,lines:false})}];
@@ -1174,10 +1246,29 @@ const units=[
  {t:`mc`,k:`k_72frame`,q:`On the 7.2B chart, blue means…`,o:[`Aegis Weapon System element`,`Aegis Combat System element`,`Outside ACS “Lifeline”`,`Training system`],a:2,why:`Blue = lifeline to the outside world.`},
  {t:`mc`,k:`k_72frame`,q:`On the 7.2B chart, yellow means…`,o:[`Aegis Combat System element`,`Aegis Weapon System element`,`Outside ACS “Lifeline”`,`Undersea only`],a:0,why:`Yellow = ACS element.`}
 ]},
+{id:`L8B`,title:`Build the shape`,sub:`The bare frame as counts and shapes: 10 and 8, the hub, the Big Three and the rest`,mins:6,slides:`Slide 2`,steps:[
+ {t:`teach`,h:`Shape first, names second`,fig:CH.shapeFig([`left`,`right`,`hub`,`big3`,`low3`,`up6`,`loners`],[],false),b:`<p>Before you fill in a single name, learn the <b>skeleton</b>. If you can sketch these shapes in the right places in under a minute, every name has a spot waiting for it. The next lessons fill them in with mnemonics.</p><p>Everything in this lesson is counts and shapes: boxes, tall ovals and flat ovals.</p>`},
+ {t:`teach`,h:`Two columns: 10 and 8`,fig:CH.shapeFig([],[`left`,`right`]),b:`<p>Down the left, under DETECT: <b>10 boxes</b>. Down the right, under ENGAGE: <b>8 boxes</b>, a little wider.</p><p>Easy way to hold it: a ship has more ways to see than to shoot. <b>10 in, 8 out.</b></p>`},
+ {t:`type`,k:`k_72shape`,q:`How many boxes run down the left (DETECT) column?`,accept:[`10`,`ten`],fig:CH.shapeFig([],[],false),why:`10 boxes on the left. 10 in, 8 out.`},
+ {t:`type`,k:`k_72shape`,q:`And down the right (ENGAGE) column?`,accept:[`8`,`eight`],fig:CH.shapeFig([`left`],[],false),why:`8 boxes on the right.`},
+ {t:`teach`,h:`One hub and the Big Three`,fig:CH.shapeFig([`left`,`right`],[`hub`,`big3`]),b:`<p>Dead center: <b>one hub</b>, a rounded box. Everything in the middle connects through it.</p><p>Around it, <b>the Big Three</b>: three tall ovals in a triangle. One on the <b>left</b>, leaning toward the sensors. One on <b>top</b>. One at the <b>lower right</b>, leaning toward the weapons.</p>`},
+ {t:`teach`,h:`Bottom three and the upper six`,fig:CH.shapeFig([`left`,`right`,`hub`,`big3`],[`low3`,`up6`]),b:`<p>Along the bottom of the middle: <b>three flat ovals</b> in a shallow smile. The left one sits highest, the middle one lowest.</p><p>In the top-left corner of the middle: <b>the upper six, 3 flat ovals and 3 small boxes</b>. The ovals stack in a zigzag down the corner. One small box sits at the stack’s top left, and two small boxes sit side by side underneath it.</p>`},
+ {t:`teach`,h:`Two loners`,fig:CH.shapeFig([`left`,`right`,`hub`,`big3`,`low3`,`up6`],[`loners`]),b:`<p>Two pieces don’t belong to a group: a <b>flat oval up top on the right</b>, between the top tall oval and the right column, and a <b>small box hanging under the left tall oval</b>.</p><p>Count it up: 10 + 8 + 1 + 3 + 3 + 6 + 2 = <b>33</b>. That’s every element on the chart.</p>`},
+ {t:`memo`,h:`The shape in one breath`,big:`10 in, 8 out. One hub, the Big Three, bottom three, upper six, two loners.`,b:`Say the numbers as a rhythm: <b>ten, eight · one, three, three, six, two</b>. They add up to 33. The upper six is <b>3 and 3</b>: three flat ovals, three small boxes.`},
+ {t:`fill`,k:`k_72shape`,q:`Left ___ boxes · Right ___ boxes · Middle: ___ hub, Big ___, bottom ___, upper ___, ___ loners.`,blanks:[`10`,`8`,`1`,`3`,`3`,`6`,`2`],bank:[`10`,`8`,`1`,`3`,`3`,`6`,`2`,`4`,`12`],why:`10 + 8 + 1 + 3 + 3 + 6 + 2 = 33.`},
+ {t:`mc`,k:`k_72shape`,q:`Where do the Big Three tall ovals sit around the hub?`,o:[`Left, top and lower right`,`Left, right and bottom`,`All three in a row above it`,`Top, bottom and right`],a:0,fig:CH.shapeFig([`left`,`right`,`hub`],[],false),why:`A triangle: the left one leans toward DETECT, one sits on top, and the lower-right one leans toward ENGAGE.`},
+ {t:`mc`,k:`k_72shape`,q:`The upper six in the top-left corner of the middle are…`,o:[`3 flat ovals and 3 small boxes`,`6 flat ovals`,`6 small boxes`,`4 flat ovals and 2 small boxes`],a:0,fig:CH.shapeFig([`left`,`right`,`hub`,`big3`,`low3`,`loners`],[],false),why:`A zigzag stack of 3 flat ovals, with 1 small box at its top left and 2 small boxes side by side underneath.`},
+ {t:`chartbuild`,k:`k_72shape`,h:`Build the frame from nothing`},
+ {t:`key`,h:`The shape of the 7.2B (Slide 2)`,k:`k_72shape`,b:`<ul><li><b>Left (DETECT):</b> 10 boxes.</li><li><b>Right (ENGAGE):</b> 8 boxes, a little wider.</li><li><b>Middle (CONTROL):</b> 1 hub (rounded box, dead center) · the Big Three tall ovals (left, top, lower right) · 3 flat ovals along the bottom · the upper six in the top-left corner (a zigzag stack of 3 flat ovals, 1 small box at its top left, 2 underneath) · 2 loners (a flat oval top right, a small box under the left tall oval).</li><li>10 + 8 + 1 + 3 + 3 + 6 + 2 = 33.</li></ul><p>Sketch this shape first every time you draw the chart. Then fill it in. The left column’s mnemonic is next: <b>Every Captain Scans Every Night, In Silence He Locates Contacts.</b></p>`}
+],review:[
+ {t:`recall`,k:`k_72shape`,q:`Describe the bare shape of the 7.2B chart, piece by piece, with counts.`,a:`Left column: 10 boxes. Right column: 8 boxes. Middle: 1 hub (rounded box, dead center); the Big Three tall ovals (left, top, lower right); 3 flat ovals along the bottom; the upper six in the top-left corner (3 flat ovals and 3 small boxes); 2 loners (a flat oval top right, a small box under the left tall oval). 33 in all.`},
+ {t:`type`,k:`k_72shape`,q:`How many elements are on the 7.2B chart in all?`,accept:[`33`,`thirty three`,`thirty-three`],why:`10 + 8 + 1 + 3 + 3 + 6 + 2 = 33.`},
+ {t:`mc`,k:`k_72shape`,q:`What are the two loners?`,o:[`A flat oval top right, and a small box under the left tall oval`,`Two tall ovals under the hub`,`Two small boxes beside the right column`,`A flat oval under the hub and a box above it`],a:0,fig:CH.shapeFig([`left`,`right`,`hub`,`big3`,`low3`,`up6`],[],false),why:`They’re the only two pieces outside a group.`}
+]},
 {id:`L82`,title:`The DETECT column`,sub:`Ten boxes, top to bottom, with a reason for every position`,mins:8,slides:`Slide 2`,steps:[
  {t:`chartshow`,h:`Ten boxes, top to bottom`,b:`Here’s the DETECT column. Don’t memorize it yet. First see the logic.`,o:{show:Z.DETECT}},
  {t:`teach`,h:`The logic of the order`,b:`<p>Read it as a ship sensing the world from the outside in, then from the sky down into the sea:</p><ol><li><b>EXCOM</b>: hear from the outside world (blue)</li><li><b>Combat DF</b>: listen for enemy emitters</li><li><b>Surface Search</b>: see ships on the surface</li><li><b>ESS</b>: sense electronic emissions</li><li><b>Navigation (Gyro)</b>: know your own heading and position</li><li><b>IFF</b>: ask, “Friend?”</li><li><b>SPY Radar</b>: see the air (red: the AWS heart)</li><li><b>Hull Sonar</b>: hear under the sea</li><li><b>LAMPS Helo</b>: extend your ears with sonobuoys</li><li><b>CEC</b>: share tracks with the fleet (blue)</li></ol>`},
- {t:`memo`,h:`Mnemonic`,big:`Every Captain Scans Every Night: Is it Friendly? SPY looks up, Hull sonar listens down, LAMPS goes out, CEC shares.`,b:`E-C-S-E-N-I-S-H-L-C. The colors: <b>blue bookends</b> (EXCOM at the top, CEC at the bottom), and <b>one red box, 7th from the top</b> (SPY). Everything else is yellow.`},
+ {t:`memo`,h:`Mnemonic`,big:`Every Captain Scans Every Night, In Silence He Locates Contacts.`,b:`<b>E</b>very = EXCOM · <b>C</b>aptain = Combat DF · <b>S</b>cans = Surface Search · <b>E</b>very = ESS · <b>N</b>ight = Navigation · <b>I</b>n = IFF · <b>S</b>ilence = SPY · <b>H</b>e = Hull Sonar · <b>L</b>ocates = LAMPS · <b>C</b>ontacts = CEC. E-C-S-E-N-I-S-H-L-C. The colors: <b>blue bookends</b> (EXCOM at the top, CEC at the bottom), and <b>one red box, 7th from the top</b> (SPY). Everything else is yellow.`},
  Object.assign(orderStep(`DETECT`,`k_72detect`),{nosrs:true}),
  {t:`sort`,k:`k_72detect`,q:`Color check: the DETECT column.`,bins:[`Red`,`Yellow`,`Blue`],items:colorItems(Z.DETECT)},
  {t:`chartpick`,k:`k_72detect`,q:`Fill the DETECT column: pick the name for each flashing slot.`,ids:Z.DETECT,o:{show:Z.DETECT}},
@@ -1278,6 +1369,7 @@ const keys=[
  {id:`k_rrab`,group:`JCI, CCMD requirements, CPM · slides 35–39`,slide:`Slides 14, 27, 38`,text:`RRAB, MEIA and JAR: who runs them, what they do`},
  {id:`k_jcidsjci`,group:`JCI, CCMD requirements, CPM · slides 35–39`,slide:`Slide 39`,text:`JCIDS vs. JCI: six differences and the critiques`},
  {id:`k_72frame`,group:`AEGIS BL 7.2B · slide 2`,slide:`Slide 2`,text:`Frame: DETECT / CONTROL / ENGAGE and the color legend`},
+ {id:`k_72shape`,group:`AEGIS BL 7.2B · slide 2`,slide:`Slide 2`,text:`The bare shape: 10 and 8, the hub, the Big Three, bottom three, upper six, two loners`},
  {id:`k_72detect`,group:`AEGIS BL 7.2B · slide 2`,slide:`Slide 2`,text:`DETECT column, top to bottom`},
  {id:`k_72engage`,group:`AEGIS BL 7.2B · slide 2`,slide:`Slide 2`,text:`ENGAGE column, top to bottom`},
  {id:`k_72core`,group:`AEGIS BL 7.2B · slide 2`,slide:`Slide 2`,text:`The red core: C&D, ADS, ALIS, AAW`},
@@ -1561,8 +1653,135 @@ function click(e){const b=e.target.closest('button');if(!b)return false;const A=
   if(b.dataset.acro==='due'){const ids=shuffle(acroItems().filter(k=>A.isMissed(S.srs[k]))).slice(0,25);A.startReview(ids,'Review: missed acronyms');return true}
   if(b.dataset.acro==='test'){const all=acroItems();const learned=all.filter(k=>S.srs[k]);const ids=A.prepPick(all,20,false);A.startRun({mode:'review',title:'Acronym write-out test',queue:ids.map(k=>Object.assign({},A.ITEMS[k],{mode:'write'})),doneTitle:'Write-out test done',summaryHTML:R=>{const r=R.results;const ks=Object.keys(r);const bad=ks.filter(k=>!r[k]);return `<div class="card" style="padding:14px;margin-top:16px;text-align:center"><span class="eyebrow">Written out correctly</span><div class="score" style="margin-top:4px">${ks.length-bad.length} / ${ks.length}</div></div>${bad.length?`<div class="card" style="padding:14px;margin-top:12px"><b>Study these</b><div class="stack" style="margin-top:8px;gap:6px">${bad.map(k=>{const X=ALLA[A.ITEMS[k].id];return `<div class="small"><span class="mono"><b>${esc(X.a)}</b></span> · ${esc(X.canon)}</div>`}).join('')}</div></div>`:''}`}});return true}
   return false}
-window.ACRO={sets,view,mount,click,ALLA,gradeWrite,nextSet:(S,after)=>window.APP.nextIn(sets,after===undefined?S.lastAcro:after)};
+window.ACRO={sets,view,mount,click,ALLA,hl,gradeWrite,nextSet:(S,after)=>window.APP.nextIn(sets,after===undefined?S.lastAcro:after)};
 window.ACRO_STEPS=STEPS;
+})();
+
+</script>
+<script>
+/* ===================== Acronym coach: teach each acronym the first time a lesson uses it ===================== */
+(function(){
+'use strict';
+if(!window.ACRO||!window.COURSE)return;
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $$=(s,el=document)=>Array.from(el.querySelectorAll(s));
+const A=window.ACRO.ALLA, hl=window.ACRO.hl;
+
+/* Lesson numbers (5.3) and order, for "You'll learn more in lesson X.Y" */
+const NUM={},ORD={},TITLE={};let ord=0;
+window.COURSE.units.forEach((u,ui)=>u.lessons.forEach((l,li)=>{NUM[l.id]=(ui+1)+'.'+(li+1);ORD[l.id]=ord++;TITLE[l.id]=l.title}));
+
+/* The lesson that covers each acronym in depth. Shown only when that lesson comes later. */
+const DEEP={JFRP:'L44',JCIDS:'L41',PPBE:'L33',WAS:'L21',DAS:'L21',ICD:'L23',CDD:'L23',CPD:'L23',DCR:'L23','DOTmLPF-P':'L23',
+ VCJCS:'L51','USD(C)':'L33',CAPE:'L33',NDAA:'L31',MPN:'L32','O&M,N':'L32','RDT&E,N':'L32',WPN:'L32',OPN:'L32',APN:'L32',SCN:'L32',
+ POM:'L33',FYDP:'L33',PBR:'L33',NSS:'L22',NDS:'L22',NMS:'L22',UCP:'L22',OPLAN:'L22',CCDR:'L73',CCMD:'L73',IPL:'L73',JWC:'L61',NGB:'L51',
+ EO:'L43',JRWG:'L43',COA:'L43',SASC:'L43',HASC:'L43',FoRGED:'L43',SPEED:'L43',JRPB:'L43',JRC:'L43',RAPID:'L43',
+ RRAB:'L74',MEIA:'L74',JAR:'L74',CPM:'L74',CPMR:'L74',IAPR:'L74',TMTR:'L74',KOP:'L61',
+ CJCSI:'L44',CJCSM:'L44',JROC:'L51',JROCM:'L44',JCB:'L51',FCB:'L51',DDRCD:'L44','J-8':'L61','J-7':'L61',OPR:'L61',DAU:'L44',
+ JOP:'L61',JFD:'L62',JCI:'L71',CRC:'L62',IAMD:'L61',CGA:'L73',JUON:'L73',JEON:'L73',JICR:'L73',JRAC:'L73','DASW(AI2)':'L73',
+ SE:'L12',SDR:'L12',PDR:'L12',CDR:'L12',MEIT:'L12','PEO IWS':'L12',
+ BL:'L81',AWS:'L81',ACS:'L81',EXCOM:'L82',TACINTEL:'L82',DF:'L82',ESS:'L82',IFF:'L82',LAMPS:'L82',CEC:'L82',
+ EW:'L83',GWS:'L83',VLS:'L83',VLA:'L83',ASROC:'L83','SM-2':'L83',ESSM:'L83',
+ 'C&D':'L84',ADS:'L84',ALIS:'L84',AAW:'L84',WCS:'L84',FCS:'L84',ORTS:'L84',
+ LAN:'L85',UWS:'L85',ATWCS:'L85',TTWCS:'L85',BFTT:'L85',STOW:'L85',ACTS:'L85',C2P:'L85',JMCIS:'L85',CDLMS:'L85',SGS:'L85'};
+
+/* Spotting acronyms in a card. Case-sensitive whole tokens; plurals and possessives count (JOPs, JROC’s).
+   No lookbehind, so older iPhones can run it. */
+const rxEsc=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+const forms=a=>[a.a].concat(a.alt.filter(x=>!/\s/.test(x)&&/[(&]/.test(x)));
+const RX=Object.keys(A).map(k=>[k,new RegExp('(^|[^A-Za-z0-9&])(?:'+forms(A[k]).map(rxEsc).join('|')+')(?:s|’s)?'+(k==='FY'?'(?=\\d|[^A-Za-z0-9&]|$)':'(?=[^A-Za-z0-9&]|$)'))]);
+const TEACH=new Set(['teach','story','key','memo','explore']);
+const strip=h=>String(h||'').replace(/<[^>]+>/g,' ').replace(/&amp;/g,'&').replace(/&nbsp;/g,' ');
+const textOf=s=>[s.h,s.b,s.big,s.prof].concat((s.spots||[]).flat()).map(strip).join(' \n ');
+function acrsIn(s){
+  if(s._acr)return s._acr;const t=textOf(s);const hits=[];
+  RX.forEach(([k,rx])=>{const m=rx.exec(t);if(m)hits.push([m.index+m[1].length,k])});
+  hits.sort((a,b)=>a[0]-b[0]);return (s._acr=hits.map(h=>h[1]));
+}
+let LESSON_ACRS=null;
+function lessonAcrs(){if(!LESSON_ACRS){const set=new Set();window.APP.LESSONS.forEach(l=>l.steps.forEach(s=>{if(TEACH.has(s.t))acrsIn(s).forEach(k=>set.add(k))}));LESSON_ACRS=set}return LESSON_ACRS}
+
+/* State lives in progress (S.coach) so it syncs and backs up with everything else.
+   a[ACR] = {t: trained, n: how many lesson cards it has appeared on} */
+const st=()=>{const S=window.APP.S;if(!S.coach||typeof S.coach!=='object')S.coach={on:true,a:{}};if(!S.coach.a)S.coach.a={};return S.coach};
+const isOn=()=>st().on!==false;
+let TAB=null;/* acronyms already learned in the Acronyms tab count as trained */
+function tabLearned(k){
+  if(!TAB){TAB={};const I=window.APP.ITEMS;for(const id in I){const s=I[id];if(s.t==='acro')(TAB[s.id]=TAB[s.id]||[]).push(id)}}
+  const S=window.APP.S;return (TAB[k]||[]).some(id=>S.srs[id]);
+}
+const trained=k=>{const r=st().a[k];return !!(r&&r.t)||tabLearned(k)};
+const REVIEW_AT=[2,3,5];/* appearance 1 = training; review on the next two appearances and the fifth */
+
+/* Called when a lesson card is finished. Returns the cards to slot in right after it. */
+function after(s,R){
+  if(!isOn()||!R||R.mode!=='lesson'||!R.lesson||R.lesson.isAcro||!TEACH.has(s.t)||s._again)return [];
+  const ks=acrsIn(s);if(!ks.length)return [];
+  const c=st();const nw=[],due=[];
+  ks.forEach(k=>{if(!trained(k)){nw.push(k);return}const r=c.a[k]||(c.a[k]={t:1,n:0});r.t=1;r.n=(r.n||0)+1;if(REVIEW_AT.includes(r.n))due.push(k)});
+  window.APP.save();
+  if(!nw.length&&!due.length)return [];
+  const out=nw.map((k,i)=>({t:'coachlearn',k,i:i+1,of:nw.length,lid:R.lesson.id}));
+  out.push({t:'coachreview',nw:nw.slice(),due:due.slice()});
+  if(nw.length)out.push(Object.assign({},s,{_again:true,_hl:nw.slice()}));
+  return out;
+}
+
+/* Back on the original card: say so, and highlight the acronyms just learned. */
+function highlight(root,rx){
+  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentElement&&n.parentElement.closest('svg,.fig,.againnote,button.spot,mark')?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT});
+  const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+  nodes.forEach(n=>{const t=n.nodeValue;rx.lastIndex=0;if(!rx.test(t))return;rx.lastIndex=0;
+    const frag=document.createDocumentFragment();let last=0,m;
+    while((m=rx.exec(t))){const start=m.index+m[1].length;frag.appendChild(document.createTextNode(t.slice(last,start)));const mk=document.createElement('mark');mk.className='acrhl';mk.textContent=m[2];frag.appendChild(mk);last=start+m[2].length;rx.lastIndex=last}
+    frag.appendChild(document.createTextNode(t.slice(last)));n.parentNode.replaceChild(frag,n)});
+}
+function decorate(el,s){
+  if(!s._hl||!s._hl.length)return;
+  const many=s._hl.length>1;
+  const note=document.createElement('div');note.className='againnote';
+  note.innerHTML=`<b>Back to the lesson.</b> Read it again. The acronym${many?'s':''} you just learned ${many?'are':'is'} highlighted.`;
+  el.insertBefore(note,el.firstChild);
+  const alts=s._hl.flatMap(k=>forms(A[k]));alts.sort((a,b)=>b.length-a.length);
+  const rx=new RegExp('(^|[^A-Za-z0-9&])((?:'+alts.map(rxEsc).join('|')+')(?:s|’s)?)(?=[^A-Za-z0-9&]|$)','g');
+  highlight(el,rx);
+  /* Explore cards: the text lives in the tap-to-open panel, so highlight it when it opens */
+  const sc=el.querySelector('#spotcard');
+  if(sc){new MutationObserver(()=>highlight(sc,rx)).observe(sc,{childList:true,subtree:true});
+    const h=el.querySelector('p.hint');if(h)h.textContent='Tap any panel you want to reread, or continue.'}
+}
+
+/* ---------- cards ---------- */
+const KH=(lab,cls)=>`<div class="stepkind"><i class="sq ${cls}"></i><span>${lab}</span></div>`;
+const STEPS={};
+STEPS.coachlearn={
+  render(s){const a=A[s.k];const deep=DEEP[s.k];const later=deep&&ORD[deep]>ORD[s.lid];
+    return `${KH(`New acronym${s.of>1?` · ${s.i} of ${s.of}`:''}`,'blue')}<h2 class="sh">Let’s learn this acronym real quick</h2>
+    <div class="acard coachcard"><div class="aabbr">${esc(a.a)}</div><div class="afull">${hl(a.canon)}</div><div class="adef">${esc(a.def)}</div>${a.hook?`<div class="ahook">${esc(a.hook)}</div>`:''}</div>
+    <p class="hint" style="margin-top:12px">Say it out loud. The red letters are the ones the acronym is built from.</p>
+    ${later?`<div class="coachnext"><span class="eyebrow">Coming up</span><b>You’ll learn more about this in lesson ${NUM[deep]}</b><span>${esc(TITLE[deep])}</span></div>`:''}`},
+  mount(s){const c=st();const r=c.a[s.k];if(!r||!r.t){c.a[s.k]={t:1,n:1};window.APP.save()}}
+};
+STEPS.coachreview={
+  render(s){const ks=s.nw.concat(s.due);
+    const many=ks.length>1;const title=s.nw.length?(many?'Do you remember them?':'Do you remember it?'):(many?'Remember these?':'Remember this one?');
+    return `${KH(s.nw.length?'New acronyms · quick check':'Acronym check','blue')}<h2 class="sh">${title}</h2>
+    <p class="sb" style="margin-bottom:12px">Say what each one stands for, then tap it to check yourself.</p>
+    <div class="crlist">${ks.map((k,i)=>`<button class="crtile" data-i="${i}" aria-expanded="false"><span class="crtop"><span class="crab">${esc(A[k].a)}</span>${s.due.includes(k)?'<em class="crtag">Review</em>':'<em class="crtag new">New</em>'}<span class="crtap">Tap to check</span></span><span class="crfull">${hl(A[k].canon)}</span></button>`).join('')}</div>`},
+  mount(s,ctx,el){const n=s.nw.length+s.due.length;ctx.seen=new Set();
+    $$('.crtile',el).forEach(b=>b.onclick=()=>{b.classList.add('open');b.setAttribute('aria-expanded','true');ctx.seen.add(+b.dataset.i);ctx.ready(ctx.seen.size===n)});ctx.ready(false)},
+  info:true
+};
+
+/* ---------- home-screen switch ---------- */
+function homeRow(){
+  const on=isOn();const total=lessonAcrs().size;const known=[...lessonAcrs()].filter(trained).length;
+  return `<div class="card coachrow"><label class="sw coachsw"><input type="checkbox" data-coach="1" ${on?'checked':''} aria-label="Acronym coach"><i aria-hidden="true"></i><span class="ct"><b>Acronym coach</b><span>${on?'On':'Off'}: ${on?'each new acronym is taught the first time a lesson uses it, then checked again on its next appearances.':'lessons won’t stop to teach acronyms. Turn it on to learn each one as it appears.'} ${known} of ${total} learned.</span></span></label></div>`;
+}
+function setOn(v){st().on=!!v;window.APP.save()}
+
+window.COACH_STEPS=STEPS;
+window.COACH={after,decorate,homeRow,setOn,isOn,acrsIn,trained,DEEP,NUM};
 })();
 
 </script>
@@ -1584,7 +1803,7 @@ const todayKey=(d=new Date())=>d.getFullYear()+'-'+String(d.getMonth()+1).padSta
 /* ---------------- content registry ---------------- */
 const C=window.COURSE; // {units:[...], keys:[...]}
 const LESSONS=[];const ITEMS={};const LESSON_BY_ID={};
-const GRADED=new Set(['mc','tf','fill','type','order','match','sort','recall','explain','chartpick','charttype','chartrecall','acro']);
+const GRADED=new Set(['mc','tf','fill','type','order','match','sort','recall','explain','chartpick','charttype','chartrecall','chartbuild','acro']);
 C.units.forEach((u,ui)=>{u.lessons.forEach((l,li)=>{l.unit=u;l.ui=ui;l.li=li;LESSONS.push(l);LESSON_BY_ID[l.id]=l;
   const pool=[];
   /* Card ids stay stable across content edits: an inserted step (ins) doesn't shift the numbering of the steps after it, and a rewritten card (sid) gets a fresh id so old results don't carry over to a different question. */
@@ -1600,7 +1819,7 @@ C.units.forEach((u,ui)=>{u.lessons.forEach((l,li)=>{l.unit=u;l.ui=ui;l.li=li;LES
 
 /* ---------------- state ---------------- */
 const KEY='aegis-exam3-v2';
-const blank=()=>({v:2,xp:0,days:{},lessons:{},srs:{},known:{},last:null,lastAcro:null,prep:{pass:1,seen:{}},updated:0});
+const blank=()=>({v:2,xp:0,days:{},lessons:{},srs:{},known:{},last:null,lastAcro:null,prep:{pass:1,seen:{}},coach:{on:true,a:{}},updated:0});
 let S;try{S=Object.assign(blank(),JSON.parse(localStorage.getItem(KEY)||'null')||{})}catch(e){S=blank()}
 let remote={db:null,ref:null,status:'local',timer:null,busy:false};
 function save(){S.updated=Date.now();try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}scheduleRemote()}
@@ -1643,7 +1862,7 @@ window.APPSRS={missedIds,isMissed,grade:srsGrade,intro:srsIntro,get S(){return S
 function toast(t){let n=$('#toast');n.textContent=t;n.classList.add('on');clearTimeout(n._t);n._t=setTimeout(()=>n.classList.remove('on'),2200)}
 
 /* ---------------- step renderers ---------------- */
-const KIND={teach:['navy','Learn'],story:['navy','Story'],explore:['navy','Explore'],key:['red','Exam key point'],memo:['blue','Memory hook'],predict:['yellow','Predict'],mc:['yellow','Check'],tf:['yellow','True or false'],fill:['yellow','Fill the gaps'],type:['yellow','Recall'],order:['yellow','Put in order'],match:['yellow','Match'],sort:['yellow','Sort'],recall:['yellow','Recall'],explain:['red','Explain it'],chartshow:['navy','7.2B chart'],chartpick:['yellow','Place it'],charttype:['yellow','Name it'],chartorder:['yellow','Put in order'],chartrecall:['yellow','Recall it']};
+const KIND={teach:['navy','Learn'],story:['navy','Story'],explore:['navy','Explore'],key:['red','Exam key point'],memo:['blue','Memory hook'],predict:['yellow','Predict'],mc:['yellow','Check'],tf:['yellow','True or false'],fill:['yellow','Fill the gaps'],type:['yellow','Recall'],order:['yellow','Put in order'],match:['yellow','Match'],sort:['yellow','Sort'],recall:['yellow','Recall'],explain:['red','Explain it'],chartshow:['navy','7.2B chart'],chartpick:['yellow','Place it'],charttype:['yellow','Name it'],chartorder:['yellow','Put in order'],chartrecall:['yellow','Recall it'],chartbuild:['yellow','Build the shape']};
 function head(s){const k=KIND[s.t]||['navy',''];return `<div class="stepkind"><i class="sq ${k[0]}"></i><span>${esc(s.kind||k[1])}</span>${s.slide?`<span class="slideref">${esc(s.slide)}</span>`:''}</div>`}
 const fig=s=>s.fig?`<div class="fig">${typeof s.fig==='function'?s.fig():(window.FIGS[s.fig]?window.FIGS[s.fig](s.figArg):'')}</div>`:'';
 
@@ -1654,7 +1873,7 @@ H.key={render:s=>`${head(s)}<div class="keycard"><div class="kh">Know this for t
 H.memo={render:s=>`${head(s)}<div class="memo"><div class="eyebrow">${esc(s.h||'Hook')}</div><div class="big">${s.big}</div><div class="sb">${s.b||''}</div></div>${fig(s)}`};
 H.explore={
   render:s=>`${head(s)}${s.h?`<h2 class="sh">${s.h}</h2>`:''}${s.b?`<div class="sb">${s.b}</div>`:''}${fig(s)}<p class="hint">Tap each one to open it. Continue unlocks when you've seen them all.</p><div class="spots">${s.spots.map((p,i)=>`<button class="spot" data-i="${i}">${esc(p[0])}</button>`).join('')}</div><div class="spotcard" id="spotcard"><span class="muted small">Pick one above.</span></div>`,
-  mount(s,ctx,el){ctx.seen=new Set();$$('.spot',el).forEach(b=>b.onclick=()=>{const i=+b.dataset.i;ctx.seen.add(i);$$('.spot',el).forEach(x=>x.classList.toggle('sel',x===b));b.classList.add('seen');$('#spotcard',el).innerHTML=`<b>${esc(s.spots[i][0])}</b><div class="sb">${s.spots[i][1]}</div>`;ctx.ready(ctx.seen.size===s.spots.length)});ctx.ready(false)},
+  mount(s,ctx,el){ctx.seen=new Set();$$('.spot',el).forEach(b=>b.onclick=()=>{const i=+b.dataset.i;ctx.seen.add(i);$$('.spot',el).forEach(x=>x.classList.toggle('sel',x===b));b.classList.add('seen');$('#spotcard',el).innerHTML=`<b>${esc(s.spots[i][0])}</b><div class="sb">${s.spots[i][1]}</div>`;ctx.ready(s._again||ctx.seen.size===s.spots.length)});ctx.ready(!!s._again)},
   info:true
 };
 function optsHTML(s,opts){return `<div class="opts">${opts.map((o,i)=>`<button class="opt" data-i="${i}"><span class="k">${'ABCDEF'[i]}</span><span>${o.html?o.html:esc(o.text)}</span></button>`).join('')}</div>`}
@@ -1749,7 +1968,7 @@ Reply with only a JSON object, no other text, exactly in this shape:
 {"score": <integer 0-100 reflecting coverage and accuracy>, "hit": [<indices of key points the student covered>], "feedback": "<2-3 plain sentences to the student: what was strong, and the single most important missing or wrong idea>", "better": "<one sentence the student could add to earn more credit>"}`}
 
 /* chart step types are provided by chart.js through window.CHART_STEPS */
-Object.assign(H,window.CHART_STEPS||{},window.ACRO_STEPS||{});
+Object.assign(H,window.CHART_STEPS||{},window.ACRO_STEPS||{},window.COACH_STEPS||{});
 
 /* ---------------- runner ---------------- */
 let RUN=null;
@@ -1779,17 +1998,22 @@ function renderRun(){
     if(ctx._result)return;
     if(ctx.customFoot){$('#fbtn').innerHTML=ctx.customFoot();return}
     if(!graded||hnd.info){$('#fbtn').innerHTML=`<button class="btn primary block" data-act="next" ${hnd.info&&!ctx.isReady?'disabled':''}>Continue</button>`;if(hnd.info){ctx.ready=(v)=>{ctx.isReady=v;const b=$('#fbtn [data-act="next"]');if(b)b.disabled=!v}}return}
-    if(hnd.auto){$('#fbtn').innerHTML=`<p class="small muted" style="text-align:center">${s.t==='match'?'Tap a left item, then its partner on the right.':s.t==='sort'?'Choose a bin for each card.':'Answer each flashing slot above.'}</p>`;return}
+    if(hnd.auto){$('#fbtn').innerHTML=`<p class="small muted" style="text-align:center">${s.t==='match'?'Tap a left item, then its partner on the right.':s.t==='sort'?'Choose a bin for each card.':s.t==='chartbuild'?'Pick each piece of the frame above.':'Answer each flashing slot above.'}</p>`;return}
     $('#fbtn').innerHTML=`<button class="btn primary block" data-act="check" ${ctx.isReady?'':'disabled'}>${ctx.primaryLabel||'Check'}</button>`;
   }
   if(hnd.mount)hnd.mount(s,ctx,stepel);
+  if(s._again&&window.COACH)window.COACH.decorate(stepel,s);
   paintFoot();
   $('#rfoot').onclick=async e=>{const b=e.target.closest('button');if(!b||b.disabled)return;
     if(b.dataset.act==='stay'){ctx._confirm=false;paintFoot();return}
     if(b.dataset.act==='leave'){endRun();render();return}
     if(ctx.onFoot&&ctx.onFoot(b))return;
     const a=b.dataset.act;
-    if(a==='next'){R.idx++;renderRun();$('#rbody')&&($('#rbody').scrollTop=0);return}
+    if(a==='next'){
+      /* Acronym coach: new acronyms on this card get taught right after it */
+      const add=window.COACH?window.COACH.after(s,R):[];
+      if(add.length){R.queue.splice(R.idx+1,0,...add);R.total+=add.length;R.retried=new Set([...R.retried].map(i=>typeof i==='number'&&i>R.idx?i+add.length:i))}
+      R.idx++;renderRun();$('#rbody')&&($('#rbody').scrollTop=0);return}
     if(a==='check'){if(ctx.customCheck){await ctx.customCheck();return}ctx.locked=true;const r=hnd.check(s,ctx,stepel);doneStep(r)}
   };
   function doneStep(r){
@@ -1857,6 +2081,7 @@ function viewLearn(){
   <div class="row">${nxt?`<button class="btn primary" data-open="${nxt.id}">${doneN?'Continue':'Start'}: ${esc(nxt.title)}</button>`:`<span class="chip"><i class="sq green"></i>Every lesson is done or marked known</span>`}<span class="chip">${doneN}/${LESSONS.length} done${knownN?` · ${knownN} known`:''}</span></div></section>
   ${due?`<button class="card duebox" style="width:100%;text-align:left;margin-top:12px" data-go="review"><span class="n" style="color:var(--red)">${due}</span><span class="t"><b>Missed card${due===1?'':'s'} to review</b><span>Get each one right twice in a row and it leaves the pile. Test Prep covers everything else.</span></span><span class="go eyebrow" style="color:var(--primary)">Review</span></button>`:''}
   ${window.ACRO?(()=>{const ai=Object.keys(ITEMS).filter(k=>ITEMS[k].t==='acro');const mm=ai.filter(k=>S.srs[k]&&S.srs[k].lv>=3).length;return `<button class="card duebox" style="width:100%;text-align:left;margin-top:12px" data-go="acro"><span class="n" style="color:var(--good)">${mm}</span><span class="t"><b>of ${ai.length} acronyms you can write out</b><span>Taught letter by letter, then written from memory.</span></span><span class="go eyebrow" style="color:var(--primary)">Open</span></button>`})():''}
+  ${window.COACH?window.COACH.homeRow():''}
   ${C.units.map((u,ui)=>`<section class="unit"><div class="unit-head"><span class="unit-num">${String(ui+1).padStart(2,'0')}</span><div><h3>${esc(u.title)}</h3><p>${esc(u.sub)}</p></div></div><div class="lessons">${u.lessons.map((l,li)=>lessonRow(l,(ui+1)+'.'+(li+1),nxt)).join('')}</div></section>`).join('')}
   <p class="hint" style="margin-top:22px">Lessons follow the order of the exam slides, but every one is open. Your progress is saved on this device${remote.ref?' and synced to your account':''}.</p>`;
 }
@@ -1903,7 +2128,7 @@ function viewExam(){
   return `<span class="eyebrow">Exam III readiness</span><h1 class="h-display" style="margin:6px 0 0">Exam</h1>${tabs}${body}`;
 }
 function bindMain(m){
-  m.onchange=e=>{const t=e.target;if(t&&t.dataset&&t.dataset.know){setKnown(t.dataset.know,t.checked);toast(t.checked?'Marked known. It won\u2019t be suggested next.':'No longer marked as known.');render()}};
+  m.onchange=e=>{const t=e.target;if(t&&t.dataset&&t.dataset.coach&&window.COACH){window.COACH.setOn(t.checked);toast(t.checked?'Acronym coach on. New acronyms get taught as they appear.':'Acronym coach off. Lessons won\u2019t stop for acronyms.');render();return}if(t&&t.dataset&&t.dataset.know){setKnown(t.dataset.know,t.checked);toast(t.checked?'Marked known. It won\u2019t be suggested next.':'No longer marked as known.');render()}};
   m.onclick=e=>{if(VIEW==='lab'&&window.CHARTLAB&&window.CHARTLAB.click(e))return;if(VIEW==='acro'&&window.ACRO&&window.ACRO.click(e))return;const b=e.target.closest('button');if(!b)return;
     if(b.dataset.open){openLesson(b.dataset.open);return}
     if(b.dataset.go){VIEW=b.dataset.go;render();window.scrollTo(0,0);return}
