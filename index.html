@@ -63,7 +63,7 @@ b,strong{font-weight:700}
 
 /* ---------- bottom nav ---------- */
 .nav{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
-.nav .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding-block:6px}
+.nav .wrap{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;padding-block:6px}
 .nav button{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 2px;border-radius:10px;color:var(--muted);font-size:.72rem;font-weight:600;letter-spacing:.02em;position:relative}
 .nav button svg{width:22px;height:22px}
 .nav button.on{color:var(--primary);background:var(--primary-soft)}
@@ -387,6 +387,52 @@ textarea.tin{min-height:150px;resize:vertical;line-height:1.5}
 @media (min-width:700px){.scrollhint{display:none}}
 @media (max-width:420px){.brand small{display:none}.stat em{display:none}}
 
+/* acronyms */
+.acard{padding:14px;border-radius:12px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+.aabbr{font-family:var(--f-mono);font-weight:700;font-size:1.45rem;letter-spacing:.04em;line-height:1.1}
+.afull{font-size:1.05rem;font-weight:600;line-height:1.4;margin-top:6px}
+.afull b{color:var(--red);font-weight:800}
+.ast{color:var(--muted);font-weight:500}
+.adef{color:var(--muted);font-size:.9rem;margin-top:6px;line-height:1.45}
+.ahook{margin-top:8px;font-size:.86rem;padding:8px 10px;border-radius:8px;background:var(--yellow-soft);line-height:1.4}
+.abig{font-family:var(--f-mono);font-weight:700;font-size:1.15em;padding:1px 6px;border-radius:6px;background:var(--surface2);border:1px solid var(--line);white-space:nowrap}
+.aletters{display:flex;gap:6px;margin:-4px 0 12px;flex-wrap:wrap}
+.aletters span{font-family:var(--f-mono);font-weight:700;width:30px;height:30px;display:grid;place-items:center;border-radius:8px;background:var(--red-soft);color:var(--red);border:1px solid var(--red)}
+.aw-ok{color:var(--good);font-weight:700}
+.aw-miss{color:var(--bad);font-weight:700;text-decoration:underline;text-decoration-thickness:2px}
+.acmp{display:grid;grid-template-columns:96px 1fr;gap:10px;align-items:baseline;padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line);font-size:.92rem}
+.acmp b{color:var(--ink)}
+.acmp span:last-child b{color:var(--red)}
+.arow{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:start;padding:10px 12px;border-bottom:1px solid var(--line)}
+.arow:last-child{border-bottom:0}
+.arow .ab{font-weight:700;font-size:.92rem;min-width:62px}
+.arow .ag{display:flex;flex-direction:column;gap:2px;min-width:0}
+.arow small{color:var(--muted);font-size:.8rem;line-height:1.35}
+.arow small.ah{color:var(--ink);background:var(--yellow-soft);padding:2px 6px;border-radius:6px;align-self:flex-start}
+.mdot{width:10px;height:10px;border-radius:50%;border:2px solid var(--line);margin-top:6px}
+.mdot.g{background:var(--good);border-color:var(--good)}.mdot.y{background:var(--yellow);border-color:var(--yellow)}.mdot.r{background:var(--bad);border-color:var(--bad)}
+.nav button span{white-space:nowrap}
+
+/* "I already know this" switches */
+.lrow2{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center}
+.sw{display:inline-flex;align-items:center;gap:10px;cursor:pointer;user-select:none;-webkit-user-select:none;font-size:.88rem;font-weight:600;color:var(--ink);position:relative}
+.sw input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
+.sw i{position:relative;width:44px;height:26px;border-radius:99px;background:var(--line);transition:background .2s;flex:none;border:1px solid var(--line)}
+.sw i::after{content:"";position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3);transition:transform .2s}
+.sw input:checked+i{background:var(--good);border-color:var(--good)}
+.sw input:checked+i::after{transform:translateX(18px)}
+.sw input:focus-visible+i{outline:3px solid var(--primary);outline-offset:2px}
+.sw.mini{flex-direction:column;gap:4px;width:56px;color:var(--muted)}
+.sw.mini em{font-style:normal;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+.knowbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-block:0 10px}
+.knowbar .btn{min-height:34px;white-space:nowrap}
+.lrow.known .dot{background:var(--primary-soft);border-color:var(--primary);color:var(--primary)}
+em.kn{font-style:normal;font-weight:700;color:var(--primary)}
+@media (max-width:480px){.lrow2 .lrow .go{display:none}}
+
+.rvcard{padding:16px}
+.rvhead{display:flex;align-items:center;gap:8px}
+
 </style>
 <header class="top"><div class="wrap"><div class="brand"><div class="flagmark" aria-hidden="true"><i></i><i></i><i></i></div><div><b>Aegis Academy</b><small>PC 4022 · Exam III</small></div></div><div class="stats" id="stats"></div></div></header>
 <main class="view wrap" id="main"></main>
@@ -668,7 +714,7 @@ function view(){
     const seen=ALL.filter(id=>{const k=elItem(id);return k&&S.srs[k]}).length;const m=Math.round(100*A.mastery(ALL.map(elItem).filter(Boolean)));
     body=`<p class="muted">You have to draw this chart from memory. Build it the way you'd draw it: frame first, then the two columns, then the red core, the LANs, and finally the wires. Each layer has a story so the positions make sense.</p>
     <div class="card duebox" style="margin-top:14px"><span class="n">${m}%</span><span class="t"><b>Chart mastery</b><span>${seen}/33 elements in your review deck</span></span></div>
-    <div class="lessons" style="margin-top:14px">${unit.lessons.map((l,i)=>{const d=S.lessons[l.id];return `<button class="lrow ${d?'done':''}" data-open="${l.id}"><span class="dot">${d?'✓':'8.'+(i+1)}</span><span class="lt"><b>${esc(l.title)}</b><span>${esc(l.sub)} · ${l.mins} min</span></span><span class="go">${d?'Redo':'Open'}</span></button>`}).join('')}</div>
+    <div class="lessons" style="margin-top:14px">${unit.lessons.map((l,i)=>window.APP_lessonRow(l,'8.'+(i+1),null)).join('')}</div>
     <div class="divider"></div><h2 class="h2">Your heat map</h2><p class="muted small" style="margin:4px 0 10px">Outline color shows how well you know each element: green solid, yellow shaky, red weak. No outline yet means not studied.</p><div class="chartwrap">${svgChart({show:'all',lines:true,detail:false,tint:masteryTint()})}</div>`;
   }else if(LAB.tab==='drill'){
     const D=[['pick:DETECT','Fill the DETECT column','Pick each name for a flashing slot'],['pick:ENGAGE','Fill the ENGAGE column','Pick each name for a flashing slot'],['pick:CONTROL','Fill the CONTROL zone','Core networks, LANs and lifelines'],['type:ALL','Name all 33 from memory','Type each name. This is closest to the exam.'],['order:DETECT','DETECT column order','Top to bottom, 10 boxes'],['order:ENGAGE','ENGAGE column order','Top to bottom, 8 boxes'],['color:ALL','Color check','Red, yellow or blue for every element'],['wire:ALL','Wiring check','Which network does each box plug into?']];
@@ -1239,6 +1285,284 @@ window.COURSE={units,keys};
 
 </script>
 <script>
+/* ===================== Acronym trainer: define it, build it, write it out ===================== */
+(function(){
+'use strict';
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $=(s,el=document)=>el.querySelector(s);const $$=(s,el=document)=>Array.from(el.querySelectorAll(s));
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+
+/* [acronym, expansion | [canonical, ...accepted variants], what it is, hook?, acronym variants?] */
+const SETS=[
+{id:`A01`,title:`The three systems and their documents`,slides:`Slides 5, 9`,list:[
+ [`JFRP`,`Joint Force Requirements Process`,`The joint requirements process that replaced JCIDS in 2026. Need-driven, under CJCS oversight.`],
+ [`JCIDS`,`Joint Capabilities Integration and Development System`,`The legacy joint requirements process (2003–2025), replaced by the JFRP.`,`Capabilities is plural, and it’s Integration AND Development.`],
+ [`PPBE`,`Planning, Programming, Budgeting, and Execution`,`The calendar-driven resourcing process (DoDD 7045.14).`,`It was PPBS (…System) until 2003, when Execution replaced System.`],
+ [`WAS`,`Warfighting Acquisition System`,`The November 2025 name for the Defense Acquisition System. Event-driven; DoW 5000.01/02.`],
+ [`DAS`,`Defense Acquisition System`,`The event-driven acquisition system (little “a”). Now called the WAS.`],
+ [`MDAP`,`Major Defense Acquisition Program`,`The largest programs. Everyone generating their requirements must be certified (Slide 5).`],
+ [`ICD`,`Initial Capabilities Document`,`Legacy document stating the capability gap and need (supported Milestone A).`,`Initial CapabilitIES (plural): the first, broad look at the gap.`],
+ [`CDD`,`Capability Development Document`,`Legacy document with measurable performance attributes (supported Milestone B).`,`Capability is singular here. D-D = Development Document.`],
+ [`CPD`,`Capability Production Document`,`Legacy document refining attributes for production (supported Milestone C).`],
+ [`DCR`,`DOTmLPF-P Change Recommendation`,`Recommends a non-materiel fix (doctrine, training, organization…) instead of buying something.`],
+ [`DOTmLPF-P`,[`Doctrine, Organization, Training, materiel, Leadership and Education, Personnel, Facilities, and Policy`,`Doctrine, Organization, Training, Materiel, Leadership, Education, Personnel, Facilities, Policy`],`The checklist of solution types. Little m = existing, off-the-shelf materiel.`,`Eight letters, nine words: L is “Leadership AND Education.” The final P (Policy) hangs off the hyphen.`,[`DOTMLPFP`,`DOTMLPF-P`,`DOTMLPF P`]]
+]},
+{id:`A02`,title:`Who’s who in the Pentagon`,slides:`Slides 9, 23`,list:[
+ [`CJCS`,`Chairman of the Joint Chiefs of Staff`,`The senior military adviser. The JFRP runs under CJCS oversight.`],
+ [`VCJCS`,`Vice Chairman of the Joint Chiefs of Staff`,`Chairs the JROC and co-chairs the RRAB.`],
+ [`USD(C)`,[`Under Secretary of Defense (Comptroller)`,`Under Secretary of War (Comptroller)`,`Under Secretary of Defense Comptroller`],`Leads budgeting and co-oversees PPBE. Now also written USW(C).`,`Slide 9 uses the USD form. Since September 2025 you’ll also see USW, for Under Secretary of War.`,[`USDC`,`USW(C)`,`USWC`]],
+ [`CAPE`,`Cost Assessment and Program Evaluation`,`The Director of CAPE leads PPBE programming, co-oversees PPBE, and is an RRAB executive co-secretary.`],
+ [`USD(A&S)`,[`Under Secretary of Defense for Acquisition and Sustainment`,`Under Secretary of War for Acquisition and Sustainment`,`Under Secretary of Defense (Acquisition and Sustainment)`],`Co-oversees the acquisition system; leads the CPM directive rewrite.`,``,[`USDAS`,`USD(A and S)`,`USW(A&S)`,`USWAS`]],
+ [`USD(R&E)`,[`Under Secretary of Defense for Research and Engineering`,`Under Secretary of War for Research and Engineering`,`Under Secretary of Defense (Research and Engineering)`],`Co-oversees the acquisition system; establishes MEIA.`,``,[`USDRE`,`USW(R&E)`,`USWRE`]],
+ [`USW(P)`,[`Under Secretary of War for Policy`,`Under Secretary of Defense for Policy`],`Leads PPBE planning; a JROC permanent advisor.`,``,[`USWP`,`USD(P)`,`USDP`]],
+ [`USW(I&S)`,[`Under Secretary of War for Intelligence and Security`,`Under Secretary of Defense for Intelligence and Security`],`A JROC permanent advisor.`,``,[`USWIS`,`USD(I&S)`,`USDIS`]],
+ [`DOT&E`,[`Director, Operational Test and Evaluation`,`Operational Test and Evaluation`,`Director of Operational Test and Evaluation`],`Independent operational test oversight; a JROC permanent advisor. The NDAA can direct its oversight of a program.`,`Don’t confuse with DOTmLPF-P. DOT&E is an office; DOTmLPF-P is a checklist.`,[`DOTE`,`DOT and E`]],
+ [`CIO`,`Chief Information Officer`,`The DoW CIO is a JROC permanent advisor.`],
+ [`DoW`,`Department of War`,`Secondary name for the Department of Defense since the September 2025 executive order.`,``,[`DOW`]],
+ [`OSW`,`Office of the Secretary of War`,`The Secretary’s staff (formerly OSD). Helps J-7 and J-8 identify JOPs.`]
+]},
+{id:`A03`,title:`Money and the colors of money`,slides:`Slides 9, 10, 15`,list:[
+ [`NDAA`,`National Defense Authorization Act`,`The annual authorization law: permission (authorities, quantities, testing, reporting).`],
+ [`MPN`,`Military Personnel, Navy`,`1-year money for sailors’ pay.`],
+ [`O&M,N`,[`Operation and Maintenance, Navy`,`Operations and Maintenance, Navy`],`1-year money to operate and maintain the fleet.`,`Officially “Operation” (singular).`,[`OMN`,`O&MN`,`O and M N`,`O&M`]],
+ [`RDT&E,N`,`Research, Development, Test and Evaluation, Navy`,`2-year money for research, development and testing.`,``,[`RDTEN`,`RDT&E`,`RDTE`,`RDT&EN`]],
+ [`WPN`,`Weapons Procurement, Navy`,`3-year money to buy missiles and other weapons.`],
+ [`OPN`,`Other Procurement, Navy`,`3-year money for equipment not bought with another procurement account.`],
+ [`APN`,`Aircraft Procurement, Navy`,`3-year money to buy aircraft.`],
+ [`SCN`,`Shipbuilding and Conversion, Navy`,`5-year money to build and convert ships.`,`Conversion, not Construction. This is the classic mistake.`],
+ [`POM`,`Program Objective Memorandum`,`Each Service’s 5-year funding plan.`],
+ [`FYDP`,`Future Years Defense Program`,`The Department’s 5-year plan of record.`,`Future YEARS (plural) Defense Program.`],
+ [`PBR`,`Program and Budget Review`,`The fall OSD review of POMs and budgets. RRAB decisions and JAR money sync with it.`],
+ [`DPG`,`Defense Planning Guidance`,`The output of PPBE planning that steers the Services’ POMs.`]
+]},
+{id:`A04`,title:`Strategy and commands`,slides:`Slides 23, 26, 29`,list:[
+ [`NSS`,`National Security Strategy`,`The President’s strategy; top of the cascade.`],
+ [`NDS`,`National Defense Strategy`,`The Secretary of War’s strategy; a source of KOPs.`],
+ [`NMS`,`National Military Strategy`,`The CJCS’s strategy.`],
+ [`UCP`,`Unified Command Plan`,`Assigns the combatant commands their missions.`],
+ [`CCMD`,`Combatant Command`,`A unified command that fights, such as INDOPACOM.`],
+ [`CCDR`,`Combatant Commander`,`Commands a CCMD and submits an IPL. May join the JROC ad hoc.`],
+ [`OPLAN`,[`Operation Plan`,`Operations Plan`],`A CCDR’s detailed plan for a contingency.`],
+ [`IPL`,`Integrated Priority List`,`A CCDR’s annual prioritized list of capability gaps.`],
+ [`JWC`,`Joint Warfighting Concept`,`The Joint Staff’s concept of how the joint force will fight; a source of KOPs.`],
+ [`VCNO`,`Vice Chief of Naval Operations`,`The Navy’s JROC principal member.`],
+ [`ACMC`,`Assistant Commandant of the Marine Corps`,`The Marine Corps’ JROC principal member.`,`Assistant Commandant, not “Vice.”`],
+ [`NGB`,`National Guard Bureau`,`Its Vice Chief is the newest JROC principal member.`]
+]},
+{id:`A05`,title:`The reform: who ordered it`,slides:`Slide 14`,list:[
+ [`EO`,`Executive Order`,`EO 14265 (April 2025) ordered the JCIDS review.`],
+ [`JRWG`,`Joint Requirements Working Group`,`The 49-day sprint (May 2025): 3 COAs, 4 lines of effort.`],
+ [`COA`,`Course of Action`,`The JRWG weighed three.`],
+ [`LOE`,`Line of Effort`,`The JRWG organized the reform into four.`],
+ [`SASC`,`Senate Armed Services Committee`,`Wrote the FoRGED Act.`],
+ [`HASC`,`House Armed Services Committee`,`Wrote the SPEED Act.`],
+ [`FoRGED`,`Fostering Reform and Government Efficiency in Defense`,`The Senate (SASC) reform bill. Proposed the Joint Requirements and Programming Board (JRPB).`,``,[`FORGED`]],
+ [`SPEED`,`Streamlining Procurement for Effective Execution and Delivery`,`The House (HASC) reform bill. Proposed the Joint Requirements Council (JRC) and RAPID.`],
+ [`JRPB`,`Joint Requirements and Programming Board`,`FoRGED’s proposed replacement for the JROC.`],
+ [`JRC`,`Joint Requirements Council`,`SPEED’s proposed new name for the JROC.`],
+ [`RAPID`,[`Requirements, Acquisition, and Programming Integration Directorate`,`Requirements, Acquisition, and Programming Directorate`],`SPEED’s proposed directorate to assess technology options and costs.`,`Slide 14 leaves out “Integration”; the bill includes it. Either earns credit here.`]
+]},
+{id:`A06`,title:`The reform: new organizations`,slides:`Slides 14, 27, 30, 38`,list:[
+ [`RRAB`,`Requirements and Resourcing Alignment Board`,`Co-chaired by the VCJCS and Deputy Secretary of War. Aligns money to the top JOPs at the PBR.`,`Two R’s = the two things it aligns: Requirements and Resourcing.`],
+ [`MEIA`,`Mission Engineering and Integration Activity`,`USW(R&E)’s mission engineering, experimentation and industry hub. Recommends solutions for JAR money.`,`An Activity, not an Agency.`],
+ [`JAR`,`Joint Acceleration Reserve`,`Top-line money withheld from FY2027 on and allocated at the PBR on RRAB decisions.`,`Acceleration. One briefing slide misprints “Allocation”; the memo says Acceleration.`],
+ [`CPM`,`Capability Portfolio Management`,`Managing capabilities as portfolios instead of program by program (DoDD 7045.20).`],
+ [`CPMR`,`Capability Portfolio Management Review`,`The Joint Staff’s requirements view inside CPM.`],
+ [`IAPR`,`Integrated Acquisition Portfolio Review`,`USW(A&S)’s acquisition-health view inside CPM.`],
+ [`TMTR`,`Technology Modernization Transition Review`,`USW(R&E)’s technology view inside CPM.`],
+ [`DoDD`,`Department of Defense Directive`,`Sets policy. DoDD 7045.14 = PPBE; DoDD 7045.20 = CPM.`,``,[`DODD`]],
+ [`DoDI`,`Department of Defense Instruction`,`Says how to carry policy out, like the new CPM DoDI.`,``,[`DODI`]],
+ [`KOP`,`Key Operational Problem`,`The NDS, JWC and August 2025 memo term. The JFRP uses JOP.`]
+]},
+{id:`A07`,title:`The rulebook and the JROC`,slides:`Slides 17–23`,list:[
+ [`CJCSI`,`Chairman of the Joint Chiefs of Staff Instruction`,`CJCSI 5123.01J is the JFRP Charter.`],
+ [`CJCSM`,`Chairman of the Joint Chiefs of Staff Manual`,`CJCSM 5123.01A is the JFRP Manual.`],
+ [`JROC`,`Joint Requirements Oversight Council`,`The statutory council (10 U.S.C. §181) chaired by the VCJCS.`],
+ [`JROCM`,[`Joint Requirements Oversight Council Memorandum`,`JROC Memorandum`],`A JROC decision memo. Previously signed JROCMs remain in effect.`],
+ [`JCB`,`Joint Capabilities Board`,`Supports the JROC.`],
+ [`FCB`,[`Functional Capabilities Board`,`Functional Capability Board`],`Supports the JROC. JCI can delegate approval as low as an FCB.`],
+ [`DDRCD`,`Deputy Director for Requirements and Capability Development`,`The J-8 office that grants relief from JROCM tasks and holds JUON validation authority.`],
+ [`J-8`,[`Directorate for Force Structure, Resources, and Assessment`,`Force Structure, Resources, and Assessment Directorate`,`Force Structure, Resources, and Assessment`],`Joint Staff directorate; co-OPR for JOPs and an RRAB executive co-secretary.`,``,[`J8`]],
+ [`J-7`,[`Directorate for Joint Force Development`,`Joint Force Development Directorate`,`Joint Force Development`],`Joint Staff directorate; co-OPR for JOPs.`,``,[`J7`]],
+ [`OPR`,`Office of Primary Responsibility`,`J-7 and J-8 are the OPRs for identifying and prioritizing JOPs.`],
+ [`WAU`,`Warfighting Acquisition University`,`The renamed DAU. Co-presented the January 2026 JFRP webinar.`],
+ [`DAU`,`Defense Acquisition University`,`The former name of the WAU.`]
+]},
+{id:`A08`,title:`JFRP vocabulary`,slides:`Slides 11, 25–33`,list:[
+ [`JOP`,`Joint Operational Problem`,`A challenge across the joint force in achieving an assigned objective. It never names a solution.`],
+ [`JFD`,`Joint Force Design`,`The long-term (7–25 year) blueprint of the future joint force.`],
+ [`JFDD`,`Joint Force Development and Design`,`The broader development-and-design effort the reoriented JROC must be involved in.`],
+ [`JCI`,`Joint Capability Integration`,`The post-approval review that recommends for interoperability (55 business days max).`,`Not JCIDS. JCI has no “D-S” and validates nothing.`],
+ [`CRC`,`Concept Required Capability`,`A capability a concept needs. The Joint Staff packages CRCs with JOPs.`],
+ [`JCA`,`Joint Capability Area`,`The capability taxonomy (Manual Enclosure D).`],
+ [`SAP`,`Special Access Program`,`CPM drives toward a common SAP portfolio.`],
+ [`IAMD`,`Integrated Air and Missile Defense`,`The example JOP family on Slide 31.`],
+ [`UAS`,[`Unmanned Aircraft System`,`Unmanned Aerial System`],`Drones; part of the massed-attack JOP.`],
+ [`EMS`,`Electromagnetic Spectrum`,`“Contested EMS environment” in the problem-first example.`],
+ [`C2`,`Command and Control`,`Part of the sensor–shooter–C2 kill chain.`],
+ [`MCA`,`Major Capability Acquisition`,`Slide 11: averaged 12+ years to deliver.`]
+]},
+{id:`A09`,title:`Combatant command needs and fast lanes`,slides:`Slides 36–37`,list:[
+ [`CGA`,`Capability Gap Assessment`,`The primary method supporting the CJCS’s annual §153 report on CCMD requirements.`],
+ [`JUON`,`Joint Urgent Operational Need`,`Legacy urgent need for ongoing operations. Replaced by the JICR.`],
+ [`JEON`,`Joint Emergent Operational Need`,`Legacy need for anticipated or imminent operations. Replaced by the JICR.`],
+ [`JICR`,`Joint Immediate Combatant Command Requirement`,`An immediate need where failure means certain death or unacceptable risk to a primary objective.`,`Immediate, then Combatant Command. There’s no “Capability” in it.`],
+ [`JRAC`,`Joint Rapid Acquisition Cell`,`Helps field urgent joint needs fast.`],
+ [`DASW(AI2)`,`Deputy Assistant Secretary of War for Acquisition Integration and Interoperability`,`Supports urgent technical needs and integration/interoperability work.`,`AI-squared: Acquisition Integration and Interoperability.`,[`DASWAI2`,`DASW AI2`]],
+ [`JSD`,`Joint Staffing Designator`,`Assigned by the JROC to set how a document is reviewed in JCI.`],
+ [`FY`,`Fiscal Year`,`October 1 to September 30.`]
+]},
+{id:`A10`,title:`Engineering the system`,slides:`Slides 8, 39`,list:[
+ [`SE`,`Systems Engineering`,`The discipline drawn as the V.`],
+ [`SDR`,`System Design Review`,`A left-side review gate on the V.`],
+ [`PDR`,`Preliminary Design Review`,`A left-side review gate on the V.`],
+ [`CDR`,`Critical Design Review`,`The review before build.`,`In JFRP documents, CDR can also mean CCMD Derived Requirement. Context tells you which.`],
+ [`MEIT`,`Multi-Element Integration and Test`,`A right-side test level on the V.`],
+ [`ET&E`,`Engineering Test and Evaluation`,`A right-side test level on the V.`,``,[`ETE`,`ET and E`]],
+ [`PEO IWS`,[`Program Executive Office, Integrated Warfare Systems`,`Program Executive Office Integrated Warfare Systems`],`The Navy office that manages Aegis.`,``,[`PEOIWS`,`PEO-IWS`]],
+ [`CSEDS`,[`Combat System Engineering Development Site`,`Combat Systems Engineering Development Site`],`Aegis’s land-based engineering and test site in Moorestown, NJ.`]
+]},
+{id:`A11`,title:`7.2B: frame and DETECT`,slides:`Slide 2`,list:[
+ [`BL`,`Baseline`,`An Aegis configuration, as in BL 7.2B.`],
+ [`AWS`,`Aegis Weapon System`,`The red elements on the chart.`],
+ [`ACS`,`Aegis Combat System`,`The whole combat system; its other elements are yellow.`],
+ [`EXCOM`,[`External Communications`,`External Communication`],`Blue: the ship’s radios and satellite links.`],
+ [`TACINTEL`,`Tactical Intelligence`,`The intelligence feed drawn beside EXCOM.`],
+ [`DF`,`Direction Finding`,`Combat DF passively locates hostile emitters.`],
+ [`ESS`,`Electronic Sensing System`,`Passive electronic sensing.`],
+ [`IFF`,`Identification Friend or Foe`,`Interrogates a contact and reads its coded reply.`],
+ [`LAMPS`,[`Light Airborne Multi-Purpose System`,`Light Airborne Multipurpose System`],`The SH-60 helicopter system: sensor (DETECT) and shooter (ENGAGE).`],
+ [`CEC`,`Cooperative Engagement Capability`,`Blue: shares fire-control-quality tracks across ships and aircraft.`]
+]},
+{id:`A12`,title:`7.2B: the red core`,slides:`Slide 2`,list:[
+ [`C&D`,`Command and Decision`,`Fuses sensor data into tracks and decides what to engage.`,``,[`CD`,`C and D`,`CND`]],
+ [`ADS`,`Aegis Display System`,`The watchstanders’ consoles and large screens.`],
+ [`ALIS`,`Aegis LAN Interconnect System`,`The backbone tying the networks together. Dead center on the chart.`],
+ [`LAN`,`Local Area Network`,`The “L” in ALIS and every chart LAN.`],
+ [`AAW`,`Anti-Air Warfare`,`The AAW network holds SPY, WCS and FCS.`],
+ [`WCS`,`Weapon Control System`,`Picks the weapon and computes the solution.`],
+ [`FCS`,`Fire Control System`,`Illuminators that guide SM-2 in its final seconds.`],
+ [`ORTS`,`Operational Readiness Test System`,`Continuously tests the Aegis equipment and isolates faults.`]
+]},
+{id:`A13`,title:`7.2B: LANs and lifelines`,slides:`Slide 2`,list:[
+ [`UWS`,[`Undersea Warfare System`,`Undersea Warfare`],`The AN/SQQ-89 undersea warfare combat system (SIGNAL and DISPLAY LANs).`],
+ [`ATWCS`,`Advanced Tomahawk Weapon Control System`,`The older Tomahawk control system.`],
+ [`TTWCS`,`Tactical Tomahawk Weapon Control System`,`The newer Tomahawk control system.`,`Advanced came first, then Tactical.`],
+ [`BFTT`,`Battle Force Tactical Trainer`,`Team training system under the STOW LAN.`],
+ [`STOW`,`Synthetic Theater of War`,`The simulated-scenario network (BFTT STOW LAN).`],
+ [`ACTS`,`Aegis Combat Training System`,`Red: trains CIC watchstanders with recorded scenarios.`],
+ [`C2P`,`Command and Control Processor`,`Blue: the tactical data-link processor.`],
+ [`JMCIS`,`Joint Maritime Command Information System`,`Blue: the command-level common operational picture.`],
+ [`CDLMS`,`Common Data Link Management System`,`Blue: manages the ship’s tactical data links.`],
+ [`SGS`,`Shipboard Gridlock System`,`Blue: lines up your tracks with other units’ tracks.`]
+]},
+{id:`A14`,title:`7.2B: weapons`,slides:`Slide 2`,list:[
+ [`EW`,`Electronic Warfare`,`Top of ENGAGE: jam and decoy.`],
+ [`GWS`,`Gun Weapon System`,`The 5-inch gun; also a stub label off C&D.`],
+ [`VLS`,[`Vertical Launch System`,`Vertical Launching System`],`Red: holds Tomahawk, VLA, SM-2 and ESSM.`],
+ [`VLA`,[`Vertical Launch ASROC`,`Vertical Launch Anti-Submarine Rocket`],`The anti-submarine rocket fired from the VLS.`],
+ [`ASROC`,`Anti-Submarine Rocket`,`The rocket-thrown torpedo inside VLA.`],
+ [`SM-2`,[`Standard Missile-2`,`Standard Missile 2`],`The Aegis area air-defense missile.`,``,[`SM2`]],
+ [`ESSM`,`Evolved Sea Sparrow Missile`,`Short-range air-defense missile, four per VLS cell.`]
+]}
+];
+const CONFUSE=[
+ [`ICD`,`CDD`,`CPD`,`DCR`],[`JCIDS`,`JFRP`,`JCI`,`JFD`,`JFDD`],[`JOP`,`KOP`,`CRC`,`JCA`],[`JUON`,`JEON`,`JICR`,`CGA`],[`CPM`,`CPMR`,`IAPR`,`TMTR`],
+ [`JROC`,`JRC`,`JRPB`,`RRAB`],[`DOT&E`,`DOTmLPF-P`,`DoDD`,`DoDI`],[`C&D`,`C2`,`C2P`,`CDLMS`],[`ATWCS`,`TTWCS`,`WCS`,`AAW`],[`SDR`,`PDR`,`CDR`,`MEIT`]
+];
+const TIPS=[`Initial → Development → Production follows Milestones A → B → C. DCR is the odd one out: it changes DOTmLPF-P instead of buying anything.`,`JCIDS is the old system. JFRP is the new process. JCI and JFD are two of the JROC’s four activities inside it. JFDD is the broader development-and-design effort.`,`JOP is the JFRP’s problem statement; KOP is the NDS/JWC/memo term for the same idea. CRCs are what a concept needs. JCAs are the capability taxonomy.`,`Urgent = ongoing operations. Emergent = imminent operations. Both were replaced by the Immediate requirement (JICR). The CGA is the annual, non-urgent channel.`,`CPM is the whole approach. Its three reviews belong to three owners: CPMR (requirements, Joint Staff), IAPR (acquisition, A&S), TMTR (technology, R&E).`,`The JROC is the real council. The JRC (House, SPEED) and JRPB (Senate, FoRGED) were proposed replacements. The RRAB is the new money board.`,`DOT&E is an office (testing). DOTmLPF-P is a checklist. A Directive sets policy; an Instruction says how to carry it out.`,`C&D is Aegis’s Command and Decision. C2 is command and control in general. C2P and CDLMS run the data links.`,`Both Tomahawk systems end in WCS. Advanced came before Tactical. Plain WCS lives inside the AAW network.`,`Reviews on the left side of the V, in order: System Design → Preliminary Design → Critical Design. MEIT is a test level on the right.`];
+
+const STOP=new Set(['of','and','the','for','in','to','a','an','on','at','by']);
+const ALLA={};SETS.forEach(st=>st.list.forEach(r=>{const full=Array.isArray(r[1])?r[1]:[r[1]];ALLA[r[0]]={a:r[0],full,canon:full[0],def:r[2],hook:r[3]||'',alt:r[4]||[],set:st.id}}));
+const words=s=>String(s).toLowerCase().replace(/&/g,' and ').replace(/[‘’']/g,'').replace(/[^a-z0-9]+/g,' ').trim().split(' ').filter(Boolean);
+const content=s=>words(s).filter(w=>!STOP.has(w));
+const sing=w=>w.length>4&&w.endsWith('ies')?w.slice(0,-3)+'y':w.length>3&&w.endsWith('s')?w.slice(0,-1):w;
+function lev(a,b){if(a===b)return 0;const m=a.length,n=b.length;if(!m)return n;if(!n)return m;let p=[...Array(n+1).keys()];for(let i=1;i<=m;i++){const c=[i];for(let j=1;j<=n;j++)c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]===b[j-1]?0:1));p=c}return p[n]}
+const weq=(a,b)=>a===b||sing(a)===sing(b)||lev(a,b)<=(b.length>=8?2:b.length>=5?1:0);
+function compare(input,variant){const T=content(variant),I=content(input);let j=0,hit=0,used=0;const marks=T.map(t=>{for(let k=j;k<I.length;k++){if(weq(I[k],t)){j=k+1;hit++;used++;return true}if(k+1<I.length&&weq(I[k]+I[k+1],t)){j=k+2;hit++;used+=2;return true}}return false});const extra=I.length-used;return{ok:hit===T.length&&extra<=1,score:T.length?hit/T.length:0,marks,extra}}
+function gradeWrite(input,A){let best=null;A.full.forEach((v,i)=>{const r=compare(input,v);r.v=i;if(!best||r.ok&&!best.ok||(r.ok===best.ok&&r.score>best.score))best=r});return best}
+const abbrNorm=s=>String(s).toUpperCase().replace(/[^A-Z0-9]/g,'');
+const gradeAbbr=(input,A)=>[A.a].concat(A.alt).some(x=>abbrNorm(x)===abbrNorm(input))&&abbrNorm(input).length>0;
+function hl(full){return full.split(/(\s+)/).map(w=>{if(!w.trim())return w;const core=w.toLowerCase().replace(/[^a-z]/g,'');if(STOP.has(core))return `<span class="ast">${esc(w)}</span>`;const m=w.match(/^([^A-Za-z0-9]*)([A-Za-z0-9])([\s\S]*)$/);return m?esc(m[1])+'<b>'+esc(m[2])+'</b>'+esc(m[3]):esc(w)}).join('')}
+function markedCanon(A,input,ok){if(ok)return `<span class="aw-ok">${esc(A.canon)}</span>`;const r=compare(input,A.canon);let ci=0;return A.canon.split(/(\s+)/).map(w=>{if(!w.trim())return w;const cs=content(w);if(!cs.length)return `<span class="ast">${esc(w)}</span>`;let good=true;cs.forEach(()=>{good=good&&!!r.marks[ci];ci++});return `<span class="${good?'aw-ok':'aw-miss'}">${esc(w)}</span>`}).join('')}
+
+const MUT={authorization:['Acquisition','Appropriations'],act:['Account'],security:['Strategy'],military:['Maritime'],personnel:['Programs'],aircraft:['Airborne'],other:['Operations'],memorandum:['Measure'],years:['Year’s'],guidance:['Goals'],council:['Committee','Board'],board:['Council','Bureau'],capability:['Capabilities'],capabilities:['Capability'],integration:['Interoperability','Integrated'],development:['Design'],design:['Development'],requirements:['Resources'],resourcing:['Requirements','Resources'],operational:['Operations'],problem:['Priority'],assessment:['Analysis'],review:['Report'],program:['Project','Portfolio'],defense:['Department'],acceleration:['Allocation'],conversion:['Construction'],readiness:['Response'],system:['Service'],management:['Modernization'],modernization:['Management'],engineering:['Experimentation'],activity:['Agency'],immediate:['Integrated'],emergent:['Emergency'],urgent:['Unified'],gap:['Goal'],priority:['Planning'],portfolio:['Program'],transition:['Technology'],interconnect:['Integration'],display:['Data'],decision:['Direction'],cooperative:['Combined'],combat:['Command'],command:['Combat'],future:['Fiscal'],objective:['Operational'],planning:['Programming'],strategy:['Security'],national:['Naval'],weapons:['Warfare'],warfare:['Weapons'],training:['Test'],test:['Training'],tactical:['Technical'],advanced:['Automated'],evaluation:['Execution'],execution:['Evaluation'],directorate:['Division'],officer:['Office'],office:['Officer'],concept:['Combat'],required:['Requirements'],area:['Agency'],initial:['Integrated'],production:['Procurement'],procurement:['Production'],standard:['Surface'],evolved:['Extended'],common:['Combined'],processor:['Program']};
+const sameStart=(w,r)=>r[0].toLowerCase()===w[0];
+function mutate(full){const toks=full.split(' ');const keyOf=i=>toks[i].toLowerCase().replace(/[^a-z]/g,'');const idx=shuffle(toks.map((t,i)=>i)).find(i=>(MUT[keyOf(i)]||[]).some(r=>sameStart(keyOf(i),r)));if(idx==null)return null;const key=keyOf(idx);const reps=MUT[key].filter(r=>sameStart(key,r));const rep=reps[Math.floor(Math.random()*reps.length)];const out=toks.slice();out[idx]=toks[idx].replace(/[A-Za-z]+/,rep);return out.join(' ')}
+const setOf=id=>SETS.find(s=>s.id===ALLA[id].set);
+
+/* ---------- step types ---------- */
+const KH=(lab,cls='yellow')=>`<div class="stepkind"><i class="sq ${cls}"></i><span>${lab}</span></div>`;
+const card=A=>`<div class="acard"><div class="aabbr">${esc(A.a)}</div><div class="afull">${hl(A.canon)}</div><div class="adef">${esc(A.def)}</div>${A.hook?`<div class="ahook">${esc(A.hook)}</div>`:''}</div>`;
+const STEPS={};
+STEPS.acrointro={render:s=>`${KH('New acronyms','navy')}<h2 class="sh">${esc(s.h||'Meet these')}</h2><p class="sb" style="margin-bottom:12px">Read each one out loud, letter by letter. The red letters are the ones the acronym is built from.</p><div class="stack">${s.ids.map(id=>card(ALLA[id])).join('')}</div>`};
+function modeFor(s){if(s.mode&&s.mode!=='auto')return s.mode;const r=window.APP&&window.APP.S.srs[s._id];const lv=r?r.lv:0;if(lv>=4&&Math.random()<.25)return 'abbr';return lv>=3?'write':lv===2?'build':'mc'}
+STEPS.acro={
+  render(s,ctx){const A=ALLA[s.id];ctx.mode=ctx.mode||modeFor(s);const m=ctx.mode;
+    if(m==='mc'){const st=setOf(s.id);const others=shuffle(st.list.map(r=>r[0]).filter(x=>x!==s.id)).map(x=>ALLA[x].canon);const mu=mutate(A.canon);let o=[A.canon];if(mu&&!A.full.some(f=>abbrNorm(f)===abbrNorm(mu)))o.push(mu);others.forEach(x=>{if(o.length<4&&!o.includes(x))o.push(x)});ctx.opts=shuffle(o.map((t,i)=>({t,i})));
+      return `${KH('What does it stand for?')}<p class="q">What does <span class="abig">${esc(A.a)}</span> stand for?</p><div class="opts">${ctx.opts.map((o,k)=>`<button class="opt" data-k="${k}"><span class="k">${'ABCD'[k]}</span><span>${esc(o.t)}</span></button>`).join('')}</div>`}
+    if(m==='rev'){const st=setOf(s.id);const o=[s.id].concat(shuffle(st.list.map(r=>r[0]).filter(x=>x!==s.id)).slice(0,3));ctx.opts=shuffle(o.map((t,i)=>({t,i})));
+      return `${KH('Which acronym?')}<p class="q">Which acronym stands for <i>${esc(A.canon)}</i>?</p><div class="opts">${ctx.opts.map((o,k)=>`<button class="opt" data-k="${k}"><span class="k">${'ABCD'[k]}</span><span class="mono" style="font-size:1rem">${esc(o.t)}</span></button>`).join('')}</div>`}
+    if(m==='build'){const toks=A.canon.split(' ');if(!ctx.pool){const tset=new Set(toks.map(t=>t.toLowerCase().replace(/[^a-z0-9]/g,'')));const mut=[],oth=[];toks.forEach(t=>{const k=t.toLowerCase().replace(/[^a-z]/g,'');(MUT[k]||[]).forEach(r=>{if(!tset.has(r.toLowerCase())&&k&&sameStart(k,r))mut.push(r)})});const st=setOf(s.id);st.list.forEach(r=>{(Array.isArray(r[1])?r[1][0]:r[1]).split(' ').forEach(w=>{const n=w.toLowerCase().replace(/[^a-z0-9]/g,'');if(n&&!tset.has(n)&&!STOP.has(n))oth.push(w.replace(/[,]/g,''))})});const d=[...new Set(shuffle(mut).concat(shuffle(oth)))].slice(0,Math.min(4,Math.max(2,8-toks.length)));ctx.pool=shuffle(toks.map((t,i)=>({t,i,real:true})).concat(d.map(t=>({t,real:false}))));ctx.ans=[]}
+      return `${KH('Build it')}<p class="q">Build the full name of <span class="abig">${esc(A.a)}</span></p><div class="aletters">${esc(A.a).split('').map(c=>/[A-Za-z0-9]/.test(c)?`<span>${c}</span>`:'').join('')}</div><div class="olist tray answer" id="bans" style="flex-direction:row;flex-wrap:wrap"></div><div class="tray" id="bpool" style="margin-top:10px"></div><p class="hint">Some tiles are decoys. Tap a placed word to send it back.</p>`}
+    if(m==='write')return `${KH('Write it out')}<p class="q">Write out <span class="abig">${esc(A.a)}</span> in full.</p><input class="tin" id="aw" autocomplete="off" autocapitalize="words" autocorrect="off" spellcheck="false" placeholder="Every word, like you would on the exam"><p class="hint">Small words like “of” and “and” don’t count against you. Spelling slips of a letter or two are forgiven.</p>`;
+    if(m==='abbr')return `${KH('Name the acronym')}<p class="q">What’s the acronym for <i>${esc(A.canon)}</i>?</p><input class="tin" id="aw" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" placeholder="Acronym">`;
+  },
+  mount(s,ctx,el){const m=ctx.mode;
+    if(m==='mc'||m==='rev'){$$('.opt',el).forEach(b=>b.onclick=()=>{if(ctx.locked)return;ctx.pick=+b.dataset.k;$$('.opt',el).forEach(x=>x.classList.toggle('sel',x===b));ctx.ready(true)});ctx.ready(false)}
+    else if(m==='build'){const paint=()=>{$('#bans',el).innerHTML=ctx.ans.map(k=>`<button class="tok" data-k="${k}">${esc(ctx.pool[k].t)}</button>`).join('')||`<span class="muted small">Tap words below, in order.</span>`;$('#bpool',el).innerHTML=ctx.pool.map((p,k)=>ctx.ans.includes(k)?'':`<button class="tok" data-k="${k}">${esc(p.t)}</button>`).join('');
+        $$('#bans .tok',el).forEach(t=>t.onclick=()=>{if(ctx.locked)return;ctx.ans=ctx.ans.filter(x=>x!==+t.dataset.k);paint()});$$('#bpool .tok',el).forEach(t=>t.onclick=()=>{if(ctx.locked)return;ctx.ans.push(+t.dataset.k);paint()});ctx.ready(ctx.ans.length>0)};paint()}
+    else{const i=$('#aw',el);i.oninput=()=>ctx.ready(i.value.trim().length>0);i.onkeydown=e=>{if(e.key==='Enter'&&i.value.trim()){e.preventDefault();ctx.primary()}};ctx.ready(false);setTimeout(()=>{if(!('ontouchstart' in window))i.focus()},50)}},
+  check(s,ctx,el){const A=ALLA[s.id];const m=ctx.mode;const info=`<span class="small"><b>${esc(A.a)}</b> = ${esc(A.canon)}. ${esc(A.def)}${A.hook?` <i>${esc(A.hook)}</i>`:''}</span>`;let ok,q,title,msg;
+    if(m==='mc'||m==='rev'){const right=m==='mc'?ctx.opts.findIndex(o=>o.t===A.canon):ctx.opts.findIndex(o=>o.t===s.id);ok=ctx.pick===right;$$('.opt',el).forEach(b=>{const k=+b.dataset.k;b.disabled=true;if(k===right)b.classList.add('right');else if(k===ctx.pick)b.classList.add('wrong')});q=ok?2:0;msg=info}
+    else if(m==='build'){const got=ctx.ans.map(k=>ctx.pool[k].t).join(' ');ok=words(got).join(' ')===words(A.canon).join(' ');$$('#bans .tok',el).forEach((t,n)=>{const p=ctx.pool[+t.dataset.k];t.classList.add(p.real&&p.i===n?'right':'wrong')});q=ok?2:0;msg=(ok?'':`<b>Correct:</b> ${hl(A.canon)}<br>`)+info}
+    else if(m==='write'){const i=$('#aw',el);i.disabled=true;const r=gradeWrite(i.value,A);ok=r.ok;q=ok?2:r.score>=.6?1:0;title=ok?(r.score===1&&r.extra===0?'Exactly':'Correct'):r.score>=.6?'Almost':'Not quite';msg=`<b>Correct:</b> ${markedCanon(A,i.value,ok)}<br>`+(ok?'':`<span class="small">Red words are the ones you missed or misspelled.</span><br>`)+info;
+      const R=window.APP.run();if(R&&R.mode==='lesson'){R.acroRes=R.acroRes||{};if(!(s.id in R.acroRes))R.acroRes[s.id]=ok}}
+    else{const i=$('#aw',el);i.disabled=true;ok=gradeAbbr(i.value,A);q=ok?2:0;msg=(ok?'':`<b>Answer:</b> ${esc(A.a)}<br>`)+info}
+    return{ok,q,title,msg}}
+};
+
+/* ---------- build set lessons ---------- */
+const sets=SETS.map((st,si)=>{const ids=st.list.map(r=>r[0]);const steps=[];
+  for(let i=0;i<ids.length;i+=4){const ch=ids.slice(i,i+4);steps.push({t:'acrointro',ids:ch,h:i===0?st.title:'A few more'});ch.forEach(id=>steps.push({t:'acro',id,mode:'build',nosrs:true}));if(ch.length>1&&ids.length<10)steps.push({t:'acro',id:shuffle(ch)[0],mode:'rev',nosrs:true})}
+  shuffle(ids).forEach(id=>steps.push({t:'acro',id,mode:'write',nosrs:true}));
+  const k='ka_'+st.id;
+  return{id:st.id,title:st.title,sub:`${ids.length} acronyms · ${st.slides}`,mins:Math.max(4,Math.round(ids.length*0.6)),slides:st.slides,isAcro:true,steps,ids,
+    review:ids.map(id=>({t:'acro',id,mode:'auto',k:k+' k_acro',q:`Write out ${id}`})),
+    after(R){const S=window.APP.S;const res=R.acroRes||{};this.review.forEach(it=>{const r=S.srs[it._id];if(!r||r.n)return;const good=res[it.id];r.lv=good?2:1;if(!good){r.miss=1;r.streak=0;r.lastQ=0}r.due=Date.now()+(good?20:5)*60e3})}}});
+const conf={id:'A15',title:'Easily confused',sub:`${CONFUSE.length} look-alike groups · all slides`,mins:7,slides:'All slides',isAcro:true,ids:[],steps:[],review:[]};
+CONFUSE.forEach((g,gi)=>{conf.steps.push({t:'teach',kind:'Don’t mix these up',h:g.join(' · '),b:`<div class="stack">${g.map(id=>`<div class="acmp"><span class="mono"><b>${esc(id)}</b></span><span>${hl(ALLA[id].canon)}</span></div>`).join('')}</div><div class="prof" style="margin-top:12px"><b class="lab">How to tell them apart</b>${esc(TIPS[gi])}</div>`});
+  conf.steps.push({t:'match',k:'ka_A15 k_acro',q:'Match each acronym to its full name.',pairs:g.map(id=>[id,ALLA[id].canon]),why:TIPS[gi]})});
+sets.push(conf);
+
+/* exam-map keys */
+if(window.COURSE&&window.COURSE.keys){sets.forEach(st=>window.COURSE.keys.push({id:'ka_'+st.id,group:'Acronyms · define and write out',slide:st.slides,text:`Acronyms: ${st.title}`}))}
+
+/* ---------- view ---------- */
+let TAB='sets',Q='';
+function acroItems(){const I=window.APP.ITEMS;return Object.keys(I).filter(k=>I[k].t==='acro')}
+function view(){const A=window.APP,S=A.S;const items=acroItems();const learned=items.filter(k=>S.srs[k]);const mastered=items.filter(k=>S.srs[k]&&S.srs[k].lv>=3);const due=learned.filter(k=>A.isMissed(S.srs[k]));const nxt=A.nextIn(sets,S.lastAcro);
+  let body='';
+  if(TAB==='sets')body=`<div class="lessons">${sets.map((st,i)=>{const d=S.lessons[st.id];const k=!d&&S.known&&S.known[st.id];const its=st.review.map(r=>r._id).filter(Boolean);const m=Math.round(100*A.mastery(its));return `<div class="lrow2"><button class="lrow ${d?'done':''} ${k?'known':''} ${nxt&&nxt.id===st.id?'next':''}" data-open="${st.id}"><span class="dot">${d||k?'✓':st.id==='A15'?'≈':i+1}</span><span class="lt"><b>${esc(st.title)}</b><span>${k?'<em class="kn">Marked known</em> · ':''}${esc(st.sub)}</span>${its.length&&d?`<div class="meterbar"><i style="width:${m}%"></i></div>`:''}</span><span class="go">${d?'Redo':'Start'}</span></button><label class="sw mini" title="I already know this"><input type="checkbox" data-know="${st.id}" ${S.known&&S.known[st.id]?'checked':''} aria-label="I already know ${esc(st.title)}"><i aria-hidden="true"></i><em>Know it</em></label></div>`}).join('')}</div>`;
+  else body=`<input class="tin" id="acrosearch" placeholder="Search acronyms or words, e.g. RRAB or portfolio" autocomplete="off" autocapitalize="off" spellcheck="false" value="${esc(Q)}"><div id="glist" style="margin-top:12px">${glossary()}</div>`;
+  return `<span class="eyebrow">Define it · Build it · Write it out</span><h1 class="h-display" style="margin:6px 0 10px">Acronyms</h1><p class="muted">Every acronym in slides 1–39 and on the 7.2B chart: ${items.length} in all. Each set teaches them letter by letter, has you build the full name from word tiles, then write it out from memory. Cards get harder as you improve: pick it, then build it, then write it out cold. Misses go to Review; Test Prep covers all of them.</p>
+  <div class="card duebox" style="margin-top:14px"><span class="n" style="color:var(--good)">${mastered.length}</span><span class="t"><b>of ${items.length} you can write out from memory</b><span>${learned.length} learned · ${due.length} missed</span></span></div>
+  <div class="stack" style="margin-top:12px">${nxt?`<button class="btn primary block" data-open="${nxt.id}">${learned.length?'Next set':'Start'}: ${esc(nxt.title)}</button>`:''}${due.length?`<button class="btn block ${nxt?'':'primary'}" data-acro="due">Review ${Math.min(due.length,25)} missed acronym${due.length===1?'':'s'}</button>`:''}<button class="btn block" data-acro="test">Test prep: write out 20, no hints</button></div>
+  <div class="seg" style="margin:20px 0 12px"><button class="${TAB==='sets'?'on':''}" data-acrotab="sets">Sets</button><button class="${TAB==='gloss'?'on':''}" data-acrotab="gloss">Glossary</button></div>${body}`}
+function glossary(){const S=window.APP.S;const q=Q.trim().toLowerCase();const I=window.APP.ITEMS;const lvOf={};Object.keys(I).forEach(k=>{if(I[k].t==='acro'&&S.srs[k])lvOf[I[k].id]=S.srs[k].lv});
+  return SETS.map(st=>{const rows=st.list.filter(r=>{if(!q)return true;const A=ALLA[r[0]];return A.a.toLowerCase().includes(q)||A.full.join(' ').toLowerCase().includes(q)||A.def.toLowerCase().includes(q)});if(!rows.length)return '';return `<div class="eyebrow" style="margin:16px 0 6px">${esc(st.title)}</div><div class="card">${rows.map(r=>{const A=ALLA[r[0]];const lv=lvOf[A.a];return `<div class="arow"><span class="mono ab">${esc(A.a)}</span><span class="ag"><span class="afull" style="font-size:.95rem">${hl(A.canon)}</span><small>${esc(A.def)}</small>${A.hook?`<small class="ah">${esc(A.hook)}</small>`:''}</span><span class="mdot ${lv==null?'':lv>=3?'g':lv>=2?'y':'r'}" title="${lv==null?'Not studied':lv>=3?'Can write it out':lv>=2?'Getting there':'Weak'}"></span></div>`}).join('')}</div>`}).join('')||`<p class="muted">No acronym matches “${esc(Q)}”.</p>`}
+function mount(m){const s=$('#acrosearch',m);if(s){s.oninput=()=>{Q=s.value;$('#glist',m).innerHTML=glossary()}}}
+function click(e){const b=e.target.closest('button');if(!b)return false;const A=window.APP,S=A.S;
+  if(b.dataset.acrotab){TAB=b.dataset.acrotab;A.render();return true}
+  if(b.dataset.acro==='due'){const ids=shuffle(acroItems().filter(k=>A.isMissed(S.srs[k]))).slice(0,25);A.startReview(ids,'Review: missed acronyms');return true}
+  if(b.dataset.acro==='test'){const all=acroItems();const learned=all.filter(k=>S.srs[k]);const ids=A.prepPick(all,20,false);A.startRun({mode:'review',title:'Acronym write-out test',queue:ids.map(k=>Object.assign({},A.ITEMS[k],{mode:'write'})),doneTitle:'Write-out test done',summaryHTML:R=>{const r=R.results;const ks=Object.keys(r);const bad=ks.filter(k=>!r[k]);return `<div class="card" style="padding:14px;margin-top:16px;text-align:center"><span class="eyebrow">Written out correctly</span><div class="score" style="margin-top:4px">${ks.length-bad.length} / ${ks.length}</div></div>${bad.length?`<div class="card" style="padding:14px;margin-top:12px"><b>Study these</b><div class="stack" style="margin-top:8px;gap:6px">${bad.map(k=>{const X=ALLA[A.ITEMS[k].id];return `<div class="small"><span class="mono"><b>${esc(X.a)}</b></span> · ${esc(X.canon)}</div>`}).join('')}</div></div>`:''}`}});return true}
+  return false}
+window.ACRO={sets,view,mount,click,ALLA,gradeWrite,nextSet:(S,after)=>window.APP.nextIn(sets,after===undefined?S.lastAcro:after)};
+window.ACRO_STEPS=STEPS;
+})();
+
+</script>
+<script>
 /* ===================== AEGIS Exam III — learning engine ===================== */
 (function(){
 'use strict';
@@ -1256,7 +1580,7 @@ const todayKey=(d=new Date())=>d.getFullYear()+'-'+String(d.getMonth()+1).padSta
 /* ---------------- content registry ---------------- */
 const C=window.COURSE; // {units:[...], keys:[...]}
 const LESSONS=[];const ITEMS={};const LESSON_BY_ID={};
-const GRADED=new Set(['mc','tf','fill','type','order','match','sort','recall','explain','chartpick','charttype','chartrecall']);
+const GRADED=new Set(['mc','tf','fill','type','order','match','sort','recall','explain','chartpick','charttype','chartrecall','acro']);
 C.units.forEach((u,ui)=>{u.lessons.forEach((l,li)=>{l.unit=u;l.ui=ui;l.li=li;LESSONS.push(l);LESSON_BY_ID[l.id]=l;
   const pool=[];
   l.steps.forEach((s,si)=>{const big=(s.t==='sort'&&s.items.length>8)||((s.t==='chartpick'||s.t==='charttype')&&s.ids.length>1);if(GRADED.has(s.t)&&!s.nosrs&&!big){s._id=l.id+':s'+si;pool.push(s)}});
@@ -1264,10 +1588,14 @@ C.units.forEach((u,ui)=>{u.lessons.forEach((l,li)=>{l.unit=u;l.ui=ui;l.li=li;LES
   pool.forEach(s=>{s._lesson=l.id;ITEMS[s._id]=s});
   l._items=pool.map(s=>s._id);
 })});
+(window.ACRO?window.ACRO.sets:[]).forEach(l=>{LESSON_BY_ID[l.id]=l;const pool=[];
+  l.steps.forEach((s,si)=>{if(GRADED.has(s.t)&&!s.nosrs){s._id=l.id+':s'+si;pool.push(s)}});
+  (l.review||[]).forEach((s,ri)=>{s._id=l.id+':r'+ri;pool.push(s)});
+  pool.forEach(s=>{s._lesson=l.id;ITEMS[s._id]=s});l._items=pool.map(s=>s._id)});
 
 /* ---------------- state ---------------- */
 const KEY='aegis-exam3-v2';
-const blank=()=>({v:2,xp:0,days:{},lessons:{},srs:{},updated:0});
+const blank=()=>({v:2,xp:0,days:{},lessons:{},srs:{},known:{},last:null,lastAcro:null,prep:{pass:1,seen:{}},updated:0});
 let S;try{S=Object.assign(blank(),JSON.parse(localStorage.getItem(KEY)||'null')||{})}catch(e){S=blank()}
 let remote={db:null,ref:null,status:'local',timer:null,busy:false};
 function save(){S.updated=Date.now();try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}scheduleRemote()}
@@ -1293,12 +1621,18 @@ function srsGrade(id,q){// q: 0 wrong, 1 partial, 2 good
   if(q===0){r.lv=1;r.lapse++;r.due=now+IV[1]}
   else if(q===1){r.lv=Math.max(1,r.lv);r.due=now+Math.max(IV[1],IV[r.lv]/2)}
   else{r.lv=Math.min(r.lv+1,IV.length-1);r.due=now+IV[r.lv]}
-  r.last=now;S.srs[id]=r;
+  if(q<2){r.miss=(r.miss||0)+1;r.streak=0}else r.streak=(r.streak||0)+1;
+  r.lastQ=q;r.last=now;S.srs[id]=r;
 }
-function srsIntro(ids,results){const now=Date.now();ids.forEach(id=>{if(S.srs[id])return;const bad=results&&results[id]===false;S.srs[id]={lv:bad?0:1,due:now+(bad?5*MIN:20*MIN),n:0,lapse:0}})}
+function srsIntro(ids,results){const now=Date.now();ids.forEach(id=>{if(S.srs[id])return;const bad=results&&results[id]===false;S.srs[id]=bad?{lv:0,due:now+5*MIN,n:0,lapse:1,miss:1,streak:0,lastQ:0}:{lv:1,due:now+20*MIN,n:0,lapse:0}})}
 function dueIds(filter){const now=Date.now();return Object.keys(S.srs).filter(id=>ITEMS[id]&&S.srs[id].due<=now&&(!filter||filter(id))).sort((a,b)=>S.srs[a].due-S.srs[b].due)}
+const isMissed=r=>!!r&&((r.lastQ!=null&&r.lastQ<2)||((r.miss||r.lapse||0)>0&&(r.streak||0)<2));
+function missedIds(filter){return Object.keys(S.srs).filter(id=>ITEMS[id]&&isMissed(S.srs[id])&&(!filter||filter(id))).sort((a,b)=>(S.srs[a].lv-S.srs[b].lv)||((S.srs[a].last||0)-(S.srs[b].last||0)))}
+function prepState(){if(!S.prep||!S.prep.seen)S.prep={pass:1,seen:{}};return S.prep}
+const prio=id=>{const r=S.srs[id];if(isMissed(r))return 0;if(!r)return 1;return 2+r.lv};
+function prepPick(pool,n,useSeen){const P=prepState();let cand=pool.filter(id=>ITEMS[id]&&(!useSeen||!P.seen[id]));cand=shuffle(cand).sort((a,b)=>prio(a)-prio(b));return interleave(cand.slice(0,n))}
 function mastery(ids){if(!ids.length)return 0;let t=0;ids.forEach(id=>{const r=S.srs[id];t+=r?Math.min(r.lv,5)/5:0});return t/ids.length}
-window.APPSRS={grade:srsGrade,intro:srsIntro,get S(){return S},save,mastery};
+window.APPSRS={missedIds,isMissed,grade:srsGrade,intro:srsIntro,get S(){return S},save,mastery};
 
 /* ---------------- toast ---------------- */
 function toast(t){let n=$('#toast');n.textContent=t;n.classList.add('on');clearTimeout(n._t);n._t=setTimeout(()=>n.classList.remove('on'),2200)}
@@ -1410,7 +1744,7 @@ Reply with only a JSON object, no other text, exactly in this shape:
 {"score": <integer 0-100 reflecting coverage and accuracy>, "hit": [<indices of key points the student covered>], "feedback": "<2-3 plain sentences to the student: what was strong, and the single most important missing or wrong idea>", "better": "<one sentence the student could add to earn more credit>"}`}
 
 /* chart step types are provided by chart.js through window.CHART_STEPS */
-Object.assign(H,window.CHART_STEPS||{});
+Object.assign(H,window.CHART_STEPS||{},window.ACRO_STEPS||{});
 
 /* ---------------- runner ---------------- */
 let RUN=null;
@@ -1421,10 +1755,13 @@ function renderRun(){
   if(R.idx>=R.queue.length)return finishRun();
   const s=R.queue[R.idx];const ctx={step:s,locked:false};R.ctx=ctx;
   const pct=Math.round(100*Math.min(R.idx,R.total)/R.total);
-  el.innerHTML=`<div class="runner" role="dialog" aria-label="${esc(R.title)}"><div class="rtop"><div class="wrap"><button class="xbtn" id="rx" aria-label="Close">${ICON.x}</button><div class="pbar"><i style="width:${pct}%"></i></div><span class="rcount">${Math.min(R.idx+1,R.queue.length)}/${R.queue.length}</span></div></div>
+  el.innerHTML=`<div class="runner" role="dialog" aria-label="${esc(R.title)}"><div class="rtop"><div class="wrap"><button class="xbtn" id="rx" aria-label="Close">${ICON.x}</button><div class="pbar"><i style="width:${pct}%"></i></div><span class="rcount">${Math.min(R.idx+1,R.queue.length)}/${R.queue.length}</span></div>${R.mode==='lesson'?`<div class="wrap knowbar"><label class="sw"><input type="checkbox" id="knowsw" ${S.known&&S.known[R.lesson.id]?'checked':''}><i aria-hidden="true"></i><span>I already know this</span></label><button class="btn sm" id="skipk" ${S.known&&S.known[R.lesson.id]?'':'hidden'}>Skip it →</button></div>`:''}</div>
   <div class="rbody" id="rbody"><div class="wrap" id="stepel">${(H[s.t]||H.teach).render(s,ctx)}</div></div>
   <div class="rfoot" id="rfoot"><div class="wrap"><div class="fb" id="fb"></div><div id="fbtn"></div></div></div></div>`;
   $('#rx').onclick=()=>{if(R.mode==='lesson'&&R.idx>2){ctx._confirm=true;$('#fbtn').innerHTML=`<p class="small" style="margin-bottom:8px">Leave this lesson? Progress in it won't be saved.</p><div class="row"><button class="btn" data-act="stay" style="flex:1">Keep going</button><button class="btn bad" data-act="leave" style="flex:1">Leave</button></div>`;return}endRun();render()};
+  if(R.mode==='lesson'){const L=R.lesson;const list=L.isAcro?window.ACRO.sets:LESSONS;
+    $('#knowsw').onchange=e=>{setKnown(L.id,e.target.checked);$('#skipk').hidden=!e.target.checked;toast(e.target.checked?'Marked known. It won\u2019t be suggested next.':'No longer marked as known.')};
+    $('#skipk').onclick=()=>{if(L.isAcro)S.lastAcro=L.id;else S.last=L.id;save();const nx=nextIn(list,L.id);endRun();if(nx)openLesson(nx.id);else{toast('Everything is finished or marked known.');render()}}}
   const stepel=$('#stepel');const hnd=H[s.t]||H.teach;
   const graded=GRADED.has(s.t)||s.t==='predict';
   ctx.ready=(v)=>{ctx.isReady=v;const b=$('#fbtn [data-act="check"]');if(b)b.disabled=!v};
@@ -1458,6 +1795,7 @@ function renderRun(){
       $('#fb').innerHTML=`<h4>${esc(r.title||(ok?pick(['Correct','Nailed it','Exactly','That’s it']):'Not quite'))}</h4><p>${r.msg||''}</p>`;
       R.graded++;if(ok){R.correct++;addXP(10);R.xp+=10}else addXP(1);
       if(s._id){if(R.mode==='lesson'){if(!(s._id in R.results))R.results[s._id]=ok}else{const q=r.q!=null?r.q:(ok?2:0);srsGrade(s._id,q);R.results[s._id]=ok}}
+      if(s._id&&R.onAnswer)R.onAnswer(s,r);
       if(!ok&&R.mode==='lesson'&&!R.retried.has(R.idx)&&!s.noretry&&s.t!=='explain'){R.retried.add(R.queue.length);R.queue.push(s)}
       if(!ok&&R.mode==='review'&&!R.retried.has(s._id)&&s.t!=='explain'&&s.t!=='recall'){R.retried.add(s._id);R.queue.push(s)}
     }
@@ -1469,20 +1807,23 @@ function renderRun(){
 const pick=a=>a[Math.floor(Math.random()*a.length)];
 function finishRun(){
   const R=RUN;let extra='';
-  if(R.mode==='lesson'){const l=R.lesson;const first=!S.lessons[l.id];S.lessons[l.id]={done:true,ts:Date.now(),acc:R.graded?Math.round(100*R.correct/R.graded):100};srsIntro(l._items,R.results);addXP(first?20:5);R.xp+=first?20:5;extra=`<p class="muted" style="margin-top:6px">${l._items.length} cards from this lesson are now in your review deck. The first ones come due in about 20 minutes.</p>`}
+  if(R.mode==='lesson'){const l=R.lesson;const first=!S.lessons[l.id];S.lessons[l.id]={done:true,ts:Date.now(),acc:R.graded?Math.round(100*R.correct/R.graded):100};srsIntro(l._items,R.results);if(l.after)l.after(R);if(l.isAcro)S.lastAcro=l.id;else S.last=l.id;addXP(first?20:5);R.xp+=first?20:5;extra=`<p class="muted" style="margin-top:6px">${l._items.length} cards from this lesson are now in Test Prep. Anything you missed is waiting in Review.</p>`}
   if(R.onFinish)R.onFinish(R);
   save();
   const acc=R.graded?Math.round(100*R.correct/R.graded):100;
-  const next=R.mode==='lesson'?nextLesson():null;
+  const next=R.mode==='lesson'?(R.lesson.isAcro?nextIn(window.ACRO.sets,R.lesson.id):nextIn(LESSONS,R.lesson.id)):null;
   $('#runner').innerHTML=`<div class="runner"><div class="rbody"><div class="wrap"><div class="done-hero"><div class="flagmark" style="justify-content:center;display:inline-grid"><i></i><i></i><i></i></div><h1 class="h-display">${esc(R.doneTitle||(R.mode==='lesson'?'Lesson complete':'Session complete'))}</h1><p class="muted">${esc(R.title)}</p>${extra}</div>
   <div class="donestats"><div><b>+${R.xp}</b><span>XP</span></div><div><b>${acc}%</b><span>Accuracy</span></div><div><b>${streak()}</b><span>Day streak</span></div></div>
-  ${R.summaryHTML?R.summaryHTML(R):''}</div></div><div class="rfoot"><div class="wrap stack">${next?`<button class="btn primary block" data-act="nextlesson">Next: ${esc(next.title)}</button>`:''}<button class="btn block ${next?'':'primary'}" data-act="home">Back to course</button></div></div></div>`;
+  ${R.summaryHTML?R.summaryHTML(R):''}</div></div><div class="rfoot"><div class="wrap stack">${next?`<button class="btn primary block" data-act="nextlesson">Next: ${esc(next.title)}</button>`:''}<button class="btn block ${next?'':'primary'}" data-act="home">${R.lesson&&R.lesson.isAcro?'Back to acronyms':'Back to course'}</button></div></div></div>`;
   $('#runner').onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.act==='home'){endRun();render()}if(b.dataset.act==='nextlesson'){endRun();openLesson(next.id)}};
 }
-function nextLesson(){return LESSONS.find(l=>!S.lessons[l.id])||null}
+const cleared=id=>!!(S.lessons[id]||(S.known&&S.known[id]));
+function nextIn(list,after){const i=after?list.findIndex(l=>l.id===after):-1;for(let k=i+1;k<list.length;k++)if(!cleared(list[k].id))return list[k];for(let k=0;k<=i&&k<list.length;k++)if(!cleared(list[k].id))return list[k];return null}
+function nextLesson(after){return nextIn(LESSONS,after===undefined?S.last:after)}
+function setKnown(id,on){S.known=S.known||{};if(on)S.known[id]=true;else delete S.known[id];save()}
 function openLesson(id){const l=LESSON_BY_ID[id];if(!l)return;startRun({mode:'lesson',lesson:l,title:l.title,queue:l.steps.slice()})}
 function startReview(ids,title,opts={}){if(!ids.length){toast('Nothing due right now');return}const q=ids.map(id=>ITEMS[id]);startRun(Object.assign({mode:'review',title:title||'Review',queue:q},opts))}
-window.APP={run:()=>RUN,openLesson,startReview,startRun,toast,ITEMS,LESSONS,render:()=>render(),esc,shuffle,fuzzy,norm,get S(){return S},save,srsGrade,srsIntro,mastery};
+window.APP={missedIds,prepPick,isMissed,nextIn,cleared,setKnown,LESSON_BY_ID,run:()=>RUN,openLesson,startReview,startRun,toast,ITEMS,LESSONS,render:()=>render(),esc,shuffle,fuzzy,norm,get S(){return S},save,srsGrade,srsIntro,mastery};
 
 /* ---------------- views ---------------- */
 const ICON={
@@ -1490,39 +1831,50 @@ const ICON={
   learn:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 6.5 12 3l9 3.5-9 3.5z"/><path d="M7 8.5V14c0 1.4 2.2 3 5 3s5-1.6 5-3V8.5"/><path d="M21 6.5V12"/></svg>',
   review:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v4h-4"/><path d="M12 8v4l3 2"/></svg>',
   chart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="5" height="16" rx="1"/><rect x="16" y="4" width="5" height="16" rx="1"/><ellipse cx="12" cy="12" rx="2.6" ry="4"/><path d="M8 9h1.5M8 15h1.5M14.6 12H16"/></svg>',
-  exam:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="m9 13 2 2 4-4"/></svg>'
+  exam:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="m9 13 2 2 4-4"/></svg>',
+  acro:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18 7.5 6 12 18"/><path d="M4.7 14h5.6"/><path d="M15 18V9h3a2.2 2.2 0 0 1 0 4.5h-3"/><path d="M18 13.5a2.3 2.3 0 0 1 0 4.5h-3"/></svg>'
 };
 let VIEW='learn';let SUB={exam:'map',lab:'learn',review:'due'};
 function render(){
-  const due=dueIds().length;
+  const due=missedIds().length;
   $('#stats').innerHTML=`<span class="stat" title="Day streak"><em>Streak</em>${streak()}d</span><span class="stat">${S.xp} XP</span>`;
-  $('#nav').innerHTML=`<div class="wrap">${[['learn','Learn'],['review','Review'],['lab','7.2B Chart'],['exam','Exam']].map(([k,t])=>`<button class="${VIEW===k?'on':''}" data-v="${k}" aria-label="${t}">${ICON[k==='lab'?'chart':k]}<span>${t}</span>${k==='review'&&due?`<span class="badge">${due>99?'99+':due}</span>`:''}</button>`).join('')}</div>`;
+  $('#nav').innerHTML=`<div class="wrap">${[['learn','Learn'],['review','Review'],['acro','Acronyms'],['lab','7.2B'],['exam','Exam']].map(([k,t])=>`<button class="${VIEW===k?'on':''}" data-v="${k}" aria-label="${t}">${ICON[k==='lab'?'chart':k]}<span>${t}</span>${k==='review'&&due?`<span class="badge">${due>99?'99+':due}</span>`:''}</button>`).join('')}</div>`;
   $$('#nav button').forEach(b=>b.onclick=()=>{VIEW=b.dataset.v;render();window.scrollTo(0,0)});
   const m=$('#main');
-  m.innerHTML=VIEW==='learn'?viewLearn():VIEW==='review'?viewReview():VIEW==='lab'?(window.CHARTLAB?window.CHARTLAB.view(SUB):''):viewExam();
+  m.innerHTML=VIEW==='learn'?viewLearn():VIEW==='review'?viewReview():VIEW==='acro'?(window.ACRO?window.ACRO.view():''):VIEW==='lab'?(window.CHARTLAB?window.CHARTLAB.view(SUB):''):viewExam();
   if(VIEW==='lab'&&window.CHARTLAB)window.CHARTLAB.mount(m,SUB);
+  if(VIEW==='acro'&&window.ACRO)window.ACRO.mount(m);
   bindMain(m);
 }
 function viewLearn(){
-  const nxt=nextLesson();const due=dueIds().length;const doneN=LESSONS.filter(l=>S.lessons[l.id]).length;
+  const nxt=nextLesson();const due=missedIds().length;const doneN=LESSONS.filter(l=>S.lessons[l.id]).length;const knownN=LESSONS.filter(l=>!S.lessons[l.id]&&S.known&&S.known[l.id]).length;
   return `<section class="card hero"><span class="eyebrow">PC 4022 · Exam III · Slides 1–39</span><h1 class="h-display">Learn it, then lock it in.</h1><p>Short lessons teach each idea from the ground up and build to the exact points on the slides. Every lesson drops cards into a spaced-review deck so the facts are still there on exam day.</p>
-  <div class="row">${nxt?`<button class="btn primary" data-open="${nxt.id}">${doneN?'Continue':'Start'}: ${esc(nxt.title)}</button>`:`<span class="chip"><i class="sq green"></i>All ${LESSONS.length} lessons complete</span>`}<span class="chip">${doneN}/${LESSONS.length} lessons</span></div></section>
-  ${due?`<button class="card duebox" style="width:100%;text-align:left;margin-top:12px" data-go="review"><span class="n" style="color:var(--red)">${due}</span><span class="t"><b>Review cards are due</b><span>Spaced review is what moves this into long-term memory. About ${Math.max(1,Math.round(due*0.4))} min.</span></span><span class="go eyebrow" style="color:var(--primary)">Review</span></button>`:''}
-  ${C.units.map((u,ui)=>`<section class="unit"><div class="unit-head"><span class="unit-num">${String(ui+1).padStart(2,'0')}</span><div><h3>${esc(u.title)}</h3><p>${esc(u.sub)}</p></div></div><div class="lessons">${u.lessons.map((l,li)=>{const d=S.lessons[l.id];const isNext=nxt&&nxt.id===l.id;return `<button class="lrow ${d?'done':''} ${isNext?'next':''}" data-open="${l.id}"><span class="dot">${d?'✓':(ui+1)+'.'+(li+1)}</span><span class="lt"><b>${esc(l.title)}</b><span>${esc(l.sub)} · ${l.mins||6} min${l.slides?' · '+esc(l.slides):''}</span></span><span class="go">${d?'Redo':isNext?'Start':'Open'}</span></button>`}).join('')}</div></section>`).join('')}
+  <div class="row">${nxt?`<button class="btn primary" data-open="${nxt.id}">${doneN?'Continue':'Start'}: ${esc(nxt.title)}</button>`:`<span class="chip"><i class="sq green"></i>Every lesson is done or marked known</span>`}<span class="chip">${doneN}/${LESSONS.length} done${knownN?` · ${knownN} known`:''}</span></div></section>
+  ${due?`<button class="card duebox" style="width:100%;text-align:left;margin-top:12px" data-go="review"><span class="n" style="color:var(--red)">${due}</span><span class="t"><b>Missed card${due===1?'':'s'} to review</b><span>Get each one right twice in a row and it leaves the pile. Test Prep covers everything else.</span></span><span class="go eyebrow" style="color:var(--primary)">Review</span></button>`:''}
+  ${window.ACRO?(()=>{const ai=Object.keys(ITEMS).filter(k=>ITEMS[k].t==='acro');const mm=ai.filter(k=>S.srs[k]&&S.srs[k].lv>=3).length;return `<button class="card duebox" style="width:100%;text-align:left;margin-top:12px" data-go="acro"><span class="n" style="color:var(--good)">${mm}</span><span class="t"><b>of ${ai.length} acronyms you can write out</b><span>Taught letter by letter, then written from memory.</span></span><span class="go eyebrow" style="color:var(--primary)">Open</span></button>`})():''}
+  ${C.units.map((u,ui)=>`<section class="unit"><div class="unit-head"><span class="unit-num">${String(ui+1).padStart(2,'0')}</span><div><h3>${esc(u.title)}</h3><p>${esc(u.sub)}</p></div></div><div class="lessons">${u.lessons.map((l,li)=>lessonRow(l,(ui+1)+'.'+(li+1),nxt)).join('')}</div></section>`).join('')}
   <p class="hint" style="margin-top:22px">Lessons follow the order of the exam slides, but every one is open. Your progress is saved on this device${remote.ref?' and synced to your account':''}.</p>`;
 }
+function lessonRow(l,num,nxt){const d=S.lessons[l.id];const k=!d&&S.known&&S.known[l.id];const isNext=nxt&&nxt.id===l.id;return `<div class="lrow2"><button class="lrow ${d?'done':''} ${k?'known':''} ${isNext?'next':''}" data-open="${l.id}"><span class="dot">${d||k?'✓':num}</span><span class="lt"><b>${esc(l.title)}</b><span>${k?'<em class="kn">Marked known</em> · ':''}${esc(l.sub)} · ${l.mins||6} min${l.slides?' · '+esc(l.slides):''}</span></span><span class="go">${d?'Redo':isNext?'Start':'Open'}</span></button><label class="sw mini" title="I already know this"><input type="checkbox" data-know="${l.id}" ${S.known&&S.known[l.id]?'checked':''} aria-label="I already know ${esc(l.title)}"><i aria-hidden="true"></i><em>Know it</em></label></div>`}
+window.APP_lessonRow=lessonRow;
 function unitItems(ui){return C.units[ui].lessons.flatMap(l=>S.lessons[l.id]?l._items:[])}
+function unitAll(ui){return C.units[ui].lessons.flatMap(l=>l._items)}
+function acroAll(){return Object.keys(ITEMS).filter(id=>ITEMS[id].t==='acro'||ITEMS[id]._lesson==='A15')}
 function viewReview(){
-  const due=dueIds();const all=Object.keys(S.srs).filter(id=>ITEMS[id]);
-  const weak=all.filter(id=>S.srs[id].lv<=2||S.srs[id].lapse>=2);
-  const next=all.map(id=>S.srs[id].due).filter(d=>d>Date.now()).sort((a,b)=>a-b)[0];
-  const when=next?fmtWhen(next-Date.now()):'';
-  return `<span class="eyebrow">Spaced retrieval</span><h1 class="h-display" style="margin:6px 0 10px">Review</h1><p class="muted">Cards come back just before you'd forget them: 10 minutes, a day, 3 days, a week, and longer each time you get them right. Miss one and it comes back soon.</p>
-  <div class="card duebox" style="margin-top:14px"><span class="n" style="color:${due.length?'var(--red)':'var(--good)'}">${due.length}</span><span class="t"><b>${due.length?'Cards due now':'You’re caught up'}</b><span>${due.length?'Mixed across everything you’ve studied.':(all.length?`Next card due ${when}.`:'Finish a lesson to start your deck.')}</span></span></div>
-  <div class="stack" style="margin-top:12px">${due.length?`<button class="btn primary block" data-review="due">Review ${Math.min(due.length,20)} due card${due.length===1?'':'s'}</button>`:''}
-  ${weak.length?`<button class="btn block" data-review="weak">Drill my ${Math.min(weak.length,20)} weakest cards</button>`:''}</div>
-  <div class="divider"></div><h2 class="h2">Cram by unit</h2><p class="muted small" style="margin:4px 0 12px">Exam soon? Drill a whole unit now, regardless of schedule. Results still update your deck.</p>
-  <div class="lessons">${C.units.map((u,ui)=>{const ids=unitItems(ui);const m=Math.round(100*mastery(ids));return `<button class="lrow" data-cram="${ui}" ${ids.length?'':'disabled style="opacity:.55"'}><span class="dot">${String(ui+1).padStart(2,'0')}</span><span class="lt"><b>${esc(u.title)}</b><span>${ids.length?`${ids.length} cards · ${m}% mastered`:'Finish a lesson in this unit first'}</span><div class="meterbar"><i style="width:${m}%"></i></div></span><span class="go">${ids.length?'Cram':''}</span></button>`}).join('')}</div>`;
+  const missed=missedIds();const all=Object.keys(ITEMS);const P=prepState();const covered=all.filter(id=>P.seen[id]).length;const left=all.length-covered;
+  const row=(key,dot,title,ids)=>{const m=Math.round(100*mastery(ids));const mi=ids.filter(id=>isMissed(S.srs[id])).length;return `<button class="lrow" data-prepunit="${key}"><span class="dot">${dot}</span><span class="lt"><b>${esc(title)}</b><span>${ids.length} cards · ${m}% mastered${mi?` · <em class="kn" style="color:var(--bad)">${mi} missed</em>`:''}</span><div class="meterbar"><i style="width:${m}%"></i></div></span><span class="go">Go</span></button>`};
+  return `<span class="eyebrow">Two ways to review</span><h1 class="h-display" style="margin:6px 0 14px">Review</h1>
+  <section class="card rvcard"><div class="rvhead"><i class="sq red"></i><span class="eyebrow" style="color:var(--ink)">Review · missed cards</span></div>
+    <div class="duebox" style="padding:6px 0 0"><span class="n" style="color:${missed.length?'var(--red)':'var(--good)'}">${missed.length}</span><span class="t"><b>${missed.length?`card${missed.length===1?'':'s'} you’ve missed`:'Nothing missed right now'}</b><span>Anything you get wrong in a lesson, Test Prep or a practice exam lands here. Get a card right twice in a row and it leaves the pile.</span></span></div>
+    ${missed.length?`<button class="btn primary block" data-review="missed" style="margin-top:12px">Review ${Math.min(missed.length,20)} missed card${missed.length===1?'':'s'}</button>`:''}
+  </section>
+  <section class="card rvcard" style="margin-top:12px"><div class="rvhead"><i class="sq navy"></i><span class="eyebrow" style="color:var(--ink)">Test prep · everything</span></div>
+    <div class="duebox" style="padding:6px 0 0"><span class="n">${covered}</span><span class="t"><b>of ${all.length} cards covered${P.pass>1?` in pass ${P.pass}`:''}</b><span>Every card in the course: all lessons (even ones you haven’t opened or marked known), the 7.2B chart, and every acronym. Rounds of 25, weakest first.</span></span></div>
+    <div class="meterbar" style="margin-top:10px;height:8px"><i style="width:${Math.round(100*covered/all.length)}%"></i></div>
+    <div class="stack" style="margin-top:12px">${left?`<button class="btn primary block" data-review="prep">${covered?'Continue':'Start'} test prep · next ${Math.min(25,left)}</button>`:`<p class="small"><b>Pass ${P.pass} complete.</b> You’ve seen every card in the course.</p><button class="btn primary block" data-review="newpass">Start pass ${P.pass+1}</button>`}${covered&&left?`<button class="btn block" data-review="newpass">Restart from a fresh pass</button>`:''}</div>
+  </section>
+  <div class="divider"></div><h2 class="h2">Test prep by unit</h2><p class="muted small" style="margin:4px 0 12px">Every card in one unit, weakest first, whether or not you’ve studied it yet.</p>
+  <div class="lessons">${C.units.map((u,ui)=>row(String(ui),String(ui+1).padStart(2,'0'),u.title,unitAll(ui))).join('')}${row('acro','Aa','Acronyms',acroAll())}</div>`;
 }
 function fmtWhen(ms){if(ms<HOUR)return `in ${Math.max(1,Math.round(ms/MIN))} min`;if(ms<DAY)return `in ${Math.round(ms/HOUR)} h`;return `in ${Math.round(ms/DAY)} day${Math.round(ms/DAY)===1?'':'s'}`}
 function keyItems(k){return Object.keys(ITEMS).filter(id=>(ITEMS[id].k||'').split(' ').includes(k.id))}
@@ -1534,34 +1886,46 @@ function viewExam(){
     const groups={};C.keys.forEach(k=>{(groups[k.group]=groups[k.group]||[]).push(k)});
     body=`<p class="muted">Every item your professor flagged as testable, in slide order. The bar fills as you prove you know it in review. Tap a row to drill just that item.</p>${Object.keys(groups).map(g=>`<h3 class="h2" style="margin:20px 0 8px;font-size:1.15rem">${esc(g)}</h3><div class="card">${groups[g].map(k=>{const ids=keyItems(k);const seen=ids.filter(id=>S.srs[id]);const m=Math.round(100*mastery(ids));return `<button class="krow" style="width:100%;text-align:left" data-key="${k.id}"><span class="meter"><span class="pct">${seen.length?m+'%':'—'}</span><div class="meterbar"><i style="width:${m}%"></i></div></span><span class="kt">${k.text}<small>${esc(k.slide)}${seen.length?'':' · not studied yet'}</small></span></button>`}).join('')}</div>`).join('')}`;
   }else if(tab==='practice'){
-    const pool=Object.keys(S.srs).filter(id=>ITEMS[id]);
-    body=`<p class="muted">A mixed, timed-feeling run across everything you've studied: recall, application, and written answers graded against the professor's key points. Finish the lessons first for a full-coverage exam.</p>
-    <div class="stack" style="margin-top:14px"><button class="btn primary block" data-practice="20" ${pool.length<5?'disabled':''}>Start a 20-question practice exam</button><button class="btn block" data-practice="explain" ${pool.some(id=>ITEMS[id].t==='explain')?'':'disabled'}>Written answers only</button><button class="btn block" data-go="lab">Draw the 7.2B from memory</button></div>${pool.length<5?'<p class="hint">Complete a few lessons to unlock the practice exam.</p>':''}`;
+    body=`<p class="muted">Twenty questions drawn from the whole course, including three written answers scored against the professor's key points. Misses go to your Review pile.</p>
+    <div class="stack" style="margin-top:14px"><button class="btn primary block" data-practice="20">Start a 20-question practice exam</button><button class="btn block" data-practice="explain">Written answers only</button><button class="btn block" data-go="lab">Draw the 7.2B from memory</button></div>`;
   }else{
     const total=Object.keys(ITEMS).length;const seen=Object.keys(S.srs).filter(id=>ITEMS[id]).length;
-    body=`<div class="card" style="padding:16px"><div class="row" style="justify-content:space-between"><b>Lessons completed</b><span class="mono">${LESSONS.filter(l=>S.lessons[l.id]).length}/${LESSONS.length}</span></div><div class="row" style="justify-content:space-between;margin-top:8px"><b>Cards in your deck</b><span class="mono">${seen}/${total}</span></div><div class="row" style="justify-content:space-between;margin-top:8px"><b>Overall mastery</b><span class="mono">${Math.round(100*mastery(Object.keys(ITEMS)))}%</span></div><div class="row" style="justify-content:space-between;margin-top:8px"><b>Saved</b><span class="mono">${remote.ref?'This device + your account':'This device'}</span></div></div>
+    body=`<div class="card" style="padding:16px"><div class="row" style="justify-content:space-between"><b>Lessons completed</b><span class="mono">${LESSONS.filter(l=>S.lessons[l.id]).length}/${LESSONS.length}</span></div><div class="row" style="justify-content:space-between;margin-top:8px"><b>Marked “I already know this”</b><span class="mono">${Object.keys(S.known||{}).length}</span></div><div class="row" style="justify-content:space-between;margin-top:8px"><b>Cards in your deck</b><span class="mono">${seen}/${total}</span></div><div class="row" style="justify-content:space-between;margin-top:8px"><b>Overall mastery</b><span class="mono">${Math.round(100*mastery(Object.keys(ITEMS)))}%</span></div><div class="row" style="justify-content:space-between;margin-top:8px"><b>Saved</b><span class="mono">${remote.ref?'This device + your account':'This device'}</span></div></div>
+    <h3 class="h2" style="margin:22px 0 6px;font-size:1.15rem">Back up your progress</h3><p class="muted small">Progress is saved in this browser${remote.ref?' and your account':''}. To keep a copy you control, save a progress code in your Notes app. Paste it back here on any device or browser to restore everything.</p>
+    <div class="stack" style="margin-top:10px"><button class="btn primary block" data-act="copycode">Copy my progress code</button><div id="codeout"></div><textarea class="tin" id="restorecode" style="min-height:90px" placeholder="Paste a progress code here to restore it"></textarea><button class="btn block" data-act="restore">Restore from this code</button><div id="restorezone"></div></div>
     <div class="stack" style="margin-top:14px"><button class="btn block" data-act="theme">Theme: ${document.documentElement.dataset.theme||'system'}</button><button class="btn block" data-act="reset">Reset all progress</button></div><div id="resetzone"></div>`;
   }
   return `<span class="eyebrow">Exam III readiness</span><h1 class="h-display" style="margin:6px 0 0">Exam</h1>${tabs}${body}`;
 }
 function bindMain(m){
-  m.onclick=e=>{if(VIEW==='lab'&&window.CHARTLAB&&window.CHARTLAB.click(e))return;const b=e.target.closest('button');if(!b)return;
+  m.onchange=e=>{const t=e.target;if(t&&t.dataset&&t.dataset.know){setKnown(t.dataset.know,t.checked);toast(t.checked?'Marked known. It won\u2019t be suggested next.':'No longer marked as known.');render()}};
+  m.onclick=e=>{if(VIEW==='lab'&&window.CHARTLAB&&window.CHARTLAB.click(e))return;if(VIEW==='acro'&&window.ACRO&&window.ACRO.click(e))return;const b=e.target.closest('button');if(!b)return;
     if(b.dataset.open){openLesson(b.dataset.open);return}
     if(b.dataset.go){VIEW=b.dataset.go;render();window.scrollTo(0,0);return}
     if(b.dataset.sub){const [v,t]=b.dataset.sub.split(':');SUB[v]=t;render();return}
-    if(b.dataset.review==='due'){startReview(interleave(dueIds()).slice(0,20),'Due review');return}
-    if(b.dataset.review==='weak'){const ids=Object.keys(S.srs).filter(id=>ITEMS[id]).sort((a,b2)=>(S.srs[a].lv-S.srs[b2].lv)||(S.srs[b2].lapse-S.srs[a].lapse));startReview(shuffle(ids.slice(0,20)),'Weak spots');return}
-    if(b.dataset.cram){const ids=unitItems(+b.dataset.cram);startReview(shuffle(ids).sort((a,c)=>(S.srs[a]?.lv||0)-(S.srs[c]?.lv||0)).slice(0,25),'Cram: '+C.units[+b.dataset.cram].title);return}
+    const markSeen=s2=>{prepState().seen[s2._id]=1};
+    if(b.dataset.review==='missed'){startReview(interleave(missedIds()).slice(0,20),'Review: missed cards',{doneTitle:'Review done',summaryHTML:R=>{const ids=Object.keys(R.results);const still=ids.filter(id=>isMissed(S.srs[id])).length;return `<div class="card" style="padding:14px;margin-top:16px;text-align:center"><span class="eyebrow">Missed pile</span><div class="score" style="margin-top:4px">${missedIds().length} left</div><p class="hint">${ids.length-still} card${ids.length-still===1?'':'s'} cleared this session.</p></div>`}});return}
+    if(b.dataset.review==='prep'){startReview(prepPick(Object.keys(ITEMS),25,true),'Test prep',{onAnswer:markSeen,doneTitle:'Test prep round done',summaryHTML:R=>summaryList(R)});return}
+    if(b.dataset.review==='newpass'){const P=prepState();S.prep={pass:P.pass+1,seen:{}};save();toast('Fresh pass started');render();return}
+    if(b.dataset.prepunit){const k=b.dataset.prepunit;const pool=k==='acro'?acroAll():unitAll(+k);startReview(prepPick(pool,25,false),'Test prep: '+(k==='acro'?'Acronyms':C.units[+k].title),{onAnswer:markSeen,doneTitle:'Test prep round done',summaryHTML:R=>summaryList(R)});return}
     if(b.dataset.key){const k=C.keys.find(x=>x.id===b.dataset.key);let ids=keyItems(k);const studied=ids.filter(id=>S.srs[id]);if(!studied.length){const l=LESSONS.find(L=>L._items.some(id=>ids.includes(id)));if(l){toast('Teaching this first: '+l.title);openLesson(l.id)}return}startReview(shuffle(studied),k.text.replace(/<[^>]+>/g,''));return}
-    if(b.dataset.practice){const pool=Object.keys(S.srs).filter(id=>ITEMS[id]);let ids;if(b.dataset.practice==='explain')ids=shuffle(pool.filter(id=>ITEMS[id].t==='explain')).slice(0,5);else{const ex=shuffle(pool.filter(id=>ITEMS[id].t==='explain')).slice(0,3);const rest=shuffle(pool.filter(id=>ITEMS[id].t!=='explain'&&ITEMS[id].t!=='recall')).slice(0,20-ex.length);ids=shuffle(rest).concat(ex)}startReview(ids,'Practice exam',{doneTitle:'Practice exam done',summaryHTML:R=>summaryList(R)});return}
+    if(b.dataset.practice){const pool=Object.keys(ITEMS).filter(id=>ITEMS[id].t!=='acro');let ids;if(b.dataset.practice==='explain')ids=shuffle(pool.filter(id=>ITEMS[id].t==='explain')).slice(0,5);else{const ex=shuffle(pool.filter(id=>ITEMS[id].t==='explain')).slice(0,3);const rest=shuffle(pool.filter(id=>ITEMS[id].t!=='explain'&&ITEMS[id].t!=='recall')).slice(0,20-ex.length);ids=shuffle(rest).concat(ex)}startReview(ids,'Practice exam',{doneTitle:'Practice exam done',summaryHTML:R=>summaryList(R)});return}
     if(b.dataset.act==='theme'){const order=['system','light','dark'];const cur=document.documentElement.dataset.theme||'system';const nx=order[(order.indexOf(cur)+1)%3];if(nx==='system')delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme=nx;try{localStorage.setItem('aegis-theme',nx)}catch(e){}render();return}
     if(b.dataset.act==='reset'){$('#resetzone').innerHTML=`<div class="card" style="padding:14px;margin-top:10px"><p class="small">This erases every lesson, card, and chart score on this device${remote.ref?' and in your account':''}. It can't be undone.</p><div class="row" style="margin-top:10px"><button class="btn" data-act="noreset" style="flex:1">Cancel</button><button class="btn bad" data-act="yesreset" style="flex:1">Erase progress</button></div></div>`;return}
     if(b.dataset.act==='noreset'){$('#resetzone').innerHTML='';return}
     if(b.dataset.act==='yesreset'){S=blank();save();toast('Progress erased');render();return}
+    if(b.dataset.act==='copycode'){const code=makeCode();const show=()=>{$('#codeout').innerHTML=`<textarea class="tin" id="codebox" readonly style="min-height:90px;font-family:var(--f-mono);font-size:.75rem"></textarea><p class="hint">Select all of it and copy it into your Notes app.</p>`;const t=$('#codebox');t.value=code;t.focus();t.select()};try{navigator.clipboard.writeText(code).then(()=>{toast('Progress code copied. Paste it into your Notes app.');$('#codeout').innerHTML=`<p class="hint">Copied ${Math.round(code.length/1024)} KB of text. Paste it somewhere safe, like a note titled “Aegis Academy progress”.</p>`},show)}catch(e){show()}return}
+    if(b.dataset.act==='restore'){const raw=($('#restorecode').value||'').trim();const obj=readCode(raw);if(!obj){$('#restorezone').innerHTML=`<p class="small" style="color:var(--bad)">That doesn’t look like a complete progress code. Copy the whole thing, starting with AEGIS1:</p>`;return}
+      $('#restorezone').innerHTML=`<div class="card" style="padding:14px"><p class="small">This replaces your current progress with the saved code: ${Object.keys(obj.lessons||{}).length} lessons done, ${Object.keys(obj.srs||{}).length} cards studied.</p><div class="row" style="margin-top:10px"><button class="btn" data-act="norestore" style="flex:1">Cancel</button><button class="btn primary" data-act="yesrestore" style="flex:1">Restore</button></div></div>`;RESTORE=obj;return}
+    if(b.dataset.act==='norestore'){$('#restorezone').innerHTML='';RESTORE=null;return}
+    if(b.dataset.act==='yesrestore'&&RESTORE){S=Object.assign(blank(),RESTORE);RESTORE=null;save();toast('Progress restored');render();return}
   };
 }
+let RESTORE=null;
+function makeCode(){const o=JSON.parse(JSON.stringify(S));return 'AEGIS1:'+btoa(unescape(encodeURIComponent(JSON.stringify(o))))}
+function readCode(raw){try{const m=raw.replace(/\s+/g,'').match(/AEGIS1:([A-Za-z0-9+/=]+)/);if(!m)return null;const o=JSON.parse(decodeURIComponent(escape(atob(m[1]))));if(!o||typeof o!=='object'||!o.srs||!o.lessons)return null;return o}catch(e){return null}}
 function interleave(ids){const by={};ids.forEach(id=>{const l=ITEMS[id]._lesson;(by[l]=by[l]||[]).push(id)});const ks=shuffle(Object.keys(by));const out=[];let more=true;while(more){more=false;ks.forEach(k=>{if(by[k].length){out.push(by[k].shift());more=true}})}return out}
-function summaryList(R){const ids=Object.keys(R.results);const bad=ids.filter(id=>!R.results[id]);return `<div class="card" style="padding:14px;margin-top:16px;text-align:center"><span class="eyebrow">First-try score</span><div class="score" style="margin-top:4px">${ids.length-bad.length} / ${ids.length}</div></div>`+(bad.length?`<div class="card" style="padding:14px;margin-top:16px"><b>Missed this time</b><ul class="small" style="margin:8px 0 0;padding-left:18px">${bad.map(id=>`<li>${(ITEMS[id].q||ITEMS[id].h||'').replace(/<[^>]+>/g,'').slice(0,140)}</li>`).join('')}</ul><p class="hint">These are scheduled to come back soon in review.</p></div>`:'')}
+function summaryList(R){const ids=Object.keys(R.results);const bad=ids.filter(id=>!R.results[id]);return `<div class="card" style="padding:14px;margin-top:16px;text-align:center"><span class="eyebrow">First-try score</span><div class="score" style="margin-top:4px">${ids.length-bad.length} / ${ids.length}</div></div>`+(bad.length?`<div class="card" style="padding:14px;margin-top:16px"><b>Missed this time</b><ul class="small" style="margin:8px 0 0;padding-left:18px">${bad.map(id=>`<li>${(ITEMS[id].q||ITEMS[id].h||'').replace(/<[^>]+>/g,'').slice(0,140)}</li>`).join('')}</ul><p class="hint">These are now in your Review pile.</p></div>`:'')}
 
 /* ---------------- boot ---------------- */
 try{const t=localStorage.getItem('aegis-theme');if(t&&t!=='system')document.documentElement.dataset.theme=t}catch(e){}
